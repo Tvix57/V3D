@@ -14,7 +14,7 @@ qt_add_executable(appv3d_2
 qt_add_qml_module(appv3d_2
     URI v3d_2
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES main.qml
 )
 
 set_target_properties(appv3d_2 PROPERTIES
