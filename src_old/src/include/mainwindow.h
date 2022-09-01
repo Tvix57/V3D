@@ -39,11 +39,10 @@ class MainWindow : public QMainWindow {
   void change_type_line();
   void change_center();
   void type_view();
-  void set_rotate(int argv);
+
   void save_model();
   void Record_Gif();
 
-  void on_slider_scale_valueChanged(int value);
 
  private:
   void Make_Gif();

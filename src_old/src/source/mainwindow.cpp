@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include <QLayout>
 #include "ui_mainwindow.h"
 
 using std::string;
@@ -12,7 +12,16 @@ MainWindow::MainWindow(QWidget* parent)
   ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
   size_window = new Dialog_size();
   color_window = new QColorDialog();
-  ui->record_label->setVisible(false);
+
+
+//  ui->open_GLWidget->setParent(this);s
+  ui->open_GLWidget->setBaseSize(this->baseSize());
+//  ui->open_GLWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::MinimumExpanding);
+
+
+
+  ui->tabWidget->setTabBarAutoHide(true);
+
   connect(ui->get_color_line, SIGNAL(triggered()), this, SLOT(get_color()));
   connect(ui->get_back_color, SIGNAL(triggered()), this, SLOT(get_color()));
   connect(ui->get_color_pick, SIGNAL(triggered()), this, SLOT(get_color()));
@@ -34,10 +43,6 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui->center, SIGNAL(triggered()), this, SLOT(change_center()));
   connect(ui->center_parallel, SIGNAL(triggered()), this,
           SLOT(change_center()));
-
-  connect(ui->slider_x, SIGNAL(valueChanged(int)), this, SLOT(set_rotate(int)));
-  connect(ui->slider_y, SIGNAL(valueChanged(int)), this, SLOT(set_rotate(int)));
-  connect(ui->slider_z, SIGNAL(valueChanged(int)), this, SLOT(set_rotate(int)));
 
   connect(ui->save_Bnp, SIGNAL(triggered()), this, SLOT(save_model()));
   connect(ui->save_Jpeg, SIGNAL(triggered()), this, SLOT(save_model()));
@@ -167,21 +172,6 @@ void MainWindow::type_view() {
   reprint();
 }
 
-void MainWindow::on_slider_scale_valueChanged(int value) {
-  ui->open_GLWidget->scale_chaged(value);
-}
-
-void MainWindow::set_rotate(int argv) {
-  QAbstractSlider* slider = (QAbstractSlider*)sender();
-  if (slider == ui->slider_x) {
-    ui->open_GLWidget->set_sl_x_val(argv - 180);
-  } else if (slider == ui->slider_y) {
-    ui->open_GLWidget->set_sl_y_val(argv - 180);
-  } else if (slider == ui->slider_z) {
-    ui->open_GLWidget->set_sl_z_val(argv - 180);
-  }
-}
-
 void MainWindow::save_conf() {
   QSettings settings("Ajhin_team", "3D_viewer");
   settings.clear();
@@ -289,7 +279,7 @@ void MainWindow::Make_Gif() {
   frameCounter = 0;
   timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(Record_Gif()));
-  ui->record_label->setVisible(true);
+//  ui->record_label->setVisible(true);
   timer->start(100);
 }
 
@@ -298,7 +288,7 @@ void MainWindow::Record_Gif() {
   gif->addFrame(ui->open_GLWidget->grabFramebuffer(), 100);
   if (frameCounter == 50) {
     timer->stop();
-    ui->record_label->setVisible(false);
+//    ui->record_label->setVisible(false);
     gif->save(ptr_save_file);
     close_save_file();
     delete gif;
