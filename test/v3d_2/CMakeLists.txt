@@ -11,10 +11,18 @@ qt_add_executable(appv3d_2
     main.cpp
 )
 
+set(IMG
+    ./misc/rotate.png
+    ./misc/3d-cube.png
+    ./misc/vectors.png
+    ./misc/arrow.png
+)
+
 qt_add_qml_module(appv3d_2
     URI v3d_2
     VERSION 1.0
     QML_FILES main.qml
+    RESOURCES ${IMG}
 )
 
 set_target_properties(appv3d_2 PROPERTIES

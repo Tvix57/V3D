@@ -6,9 +6,9 @@ import QtQuick.Layouts
 Window {
     id: window
     width: 640
-    height: 480
+    height: 482
     visible: true
-    color: "#bea29999"
+    color: "#be3e3737"
     title: qsTr("V3D")
     MenuBar {
         Menu {
@@ -41,23 +41,14 @@ Window {
         id: toolBar
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        width: 30
-        height: 90
-
-        //        height:minimumWidth
-        //        position: ToolBar.Footer
-
+        bottomPadding: 0
+        rightPadding: 0
+        leftPadding: 0
         Column {
-            id: column
-            width: maximumWidth
-            height: maximumHeight
-
             ToolButton {
-                id: toolButtonScale
                 width: 30
                 height: 30
                 Image {
-                    id: scaleIMG
                     anchors.fill: parent
                     source: "misc/3d-cube.png"
                 }
@@ -72,8 +63,6 @@ Window {
                     value: 0.5
                     x: -96
                     y: 1
-
-
                 }
 
             }
@@ -83,7 +72,6 @@ Window {
                 width: 30
                 height: 30
                 Image {
-                    id: rotateIMG
                     anchors.fill: parent
                     source: "misc/rotate.png"
                 }
@@ -92,17 +80,13 @@ Window {
                     grid.visible = false
                     slider.visible = false
                 }
-                Grid {
+                GridLayout {
                     id: grid2
-                    x: -206
-                    y: -10
-                    width: 200
-                    height: 50
                     visible:false
                     anchors.bottom: parent.bottom
-                    anchors.rightMargin: 6
-                    anchors.bottomMargin: -10
-                    anchors.right: parent.parent.left
+                    rowSpacing: 0
+                    columnSpacing: 0
+                    anchors.right: parent.left
                     Dial {
                         id: dial
                         x: 0
@@ -122,15 +106,9 @@ Window {
             }
 
             ToolButton {
-                id: toolButtonMove
                 width: 30
                 height: 30
-                bottomPadding: 0
-                topPadding: 0
-                rightPadding: 0
-                leftPadding: 0
                 Image {
-                    id: moveIMG
                     anchors.fill: parent
                     source: "misc/vectors.png"
                 }
@@ -145,14 +123,13 @@ Window {
                     height: 150
                     columns: 3
                     rows: 4
-                    visible: false
+//                    visible: false
+
                     rowSpacing: 0
-                    x: -156
-                    y: -120
+                    columnSpacing: 0
+
                     anchors.bottom: parent.bottom
-                    anchors.rightMargin: 36
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
+                    anchors.right: parent.left
                     Button {
                         id: buttonLeft
                         x: 0
@@ -162,20 +139,33 @@ Window {
                         Layout.row: 1
                         Layout.rowSpan: 2
                         Layout.column: 0
-                        text: qsTr("<-")
-                        rightPadding: 0
-                        leftPadding: 0
-                        //                        shortcut: "Right"
+                        autoRepeat: true
+                        Image {
+                            anchors.fill: parent
+                            source: "misc/arrow.png"
+                            rotation: 180
+                        }
                     }
                     Button {
                         id: buttonForward
                         x: 0
                         y: 0
+                        height: 50
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 0
                         Layout.column: 1
-                        text: qsTr("^")
+                        autoRepeat: true
+                        Shortcut {
+                            sequences: ["w", StandardKey.Forward]
+                            onActivated: buttonForward.clicked()
+
+                        }
+                        Image {
+                            anchors.fill: parent
+                            source: "misc/arrow.png"
+                            rotation: 270
+                        }
                     }
                     Button {
                         id: buttonRight
@@ -186,7 +176,11 @@ Window {
                         Layout.row: 1
                         Layout.rowSpan: 2
                         Layout.column: 2
-                        text: qsTr("->")
+                        autoRepeat: true
+                        Image {
+                            anchors.fill: parent
+                            source: "misc/arrow.png"
+                        }
                     }
                     Button {
                         id: buttonUp
@@ -197,6 +191,7 @@ Window {
                         Layout.row: 1
                         Layout.column: 1
                         text: qsTr("u")
+                        autoRepeat: true
                     }
                     Button {
                         id: buttonDown
@@ -207,19 +202,28 @@ Window {
                         Layout.row: 2
                         Layout.column: 1
                         text: qsTr("d")
+                        autoRepeat: true
                     }
                     Button {
                         id: buttonBack
-                        x: 0
-                        y: 0
+
+
+
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 3
                         Layout.column: 1
-                        text: qsTr("|")
+                        Image {
+                            anchors.fill: parent
+                            source: "misc/arrow.png"
+                            rotation: 90
+                        }
+                        autoRepeat: true
                     }
                 }
             }
         }
     }
+
+
 }
