@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick3D
 import QtQuick.Layouts
-
+import QtQuick.Controls.Material
 Window {
     id: window
     width: 640
@@ -10,6 +10,10 @@ Window {
     visible: true
     color: "#be3e3737"
     title: qsTr("V3D")
+    Material.theme: Material.Dark
+    Material.accent: Material.Purple
+    Material.background: Material.Dark
+
     MenuBar {
         Menu {
             title: qsTr("&File")
@@ -44,6 +48,7 @@ Window {
         bottomPadding: 0
         rightPadding: 0
         leftPadding: 0
+
         Column {
             ToolButton {
                 width: 30
@@ -134,7 +139,10 @@ Window {
                         id: buttonLeft
                         x: 0
                         y: 0
-                        Layout.fillHeight: true
+                        topInset: 0
+                        bottomInset: 0
+                        padding: 0
+//                        Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 1
                         Layout.rowSpan: 2
@@ -142,6 +150,7 @@ Window {
                         autoRepeat: true
                         Image {
                             anchors.fill: parent
+                            scale: 0.5
                             source: "misc/arrow.png"
                             rotation: 180
                         }
@@ -150,12 +159,18 @@ Window {
                         id: buttonForward
                         x: 0
                         y: 0
-                        height: 50
+                        bottomInset: 0
+                        padding: 0
+                        topPadding: 0
+                        bottomPadding: 0
+//                        height: 50
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 0
                         Layout.column: 1
+                        Layout.preferredHeight: 50
                         autoRepeat: true
+
                         Shortcut {
                             sequences: ["w", StandardKey.Forward]
                             onActivated: buttonForward.clicked()
@@ -163,6 +178,7 @@ Window {
                         }
                         Image {
                             anchors.fill: parent
+                            scale: 0.5
                             source: "misc/arrow.png"
                             rotation: 270
                         }
@@ -171,7 +187,11 @@ Window {
                         id: buttonRight
                         x: 0
                         y: 0
-                        Layout.fillHeight: true
+                        bottomInset: 0
+                        topInset: 0
+                        padding: 0
+
+//                        Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 1
                         Layout.rowSpan: 2
@@ -179,6 +199,7 @@ Window {
                         autoRepeat: true
                         Image {
                             anchors.fill: parent
+                            scale: 0.5
                             source: "misc/arrow.png"
                         }
                     }
@@ -186,35 +207,49 @@ Window {
                         id: buttonUp
                         x: 0
                         y: 0
-                        height: 25
+                        Layout.preferredHeight: 25
+
                         Layout.fillWidth: true
                         Layout.row: 1
                         Layout.column: 1
-                        text: qsTr("u")
+                        text: qsTr("up")
+                        bottomInset: 0
+                        padding: 0
+                        verticalPadding: 0
+                        topPadding: 0
+                        horizontalPadding: 0
+                        bottomPadding: 0
                         autoRepeat: true
                     }
                     Button {
-                        id: buttonDown
-                        x: 0
-                        y: 0
-                        height: 25
-                        Layout.fillWidth: true
-                        Layout.row: 2
-                        Layout.column: 1
-                        text: qsTr("d")
-                        autoRepeat: true
+                        id: buttonDown///
+                        x: 0///
+                        y: 0///
+                        Layout.preferredHeight: 25
+                        visible: true///
+                        Layout.fillWidth: true//
+                        Layout.row: 2//
+                        Layout.column: 1//
+                        text: qsTr("down")
+                        topInset: 0
+                        padding: 0
+                        topPadding: 0
+//                        transformOrigin: Item.Center//
+                        autoRepeat: true//
                     }
                     Button {
                         id: buttonBack
-
-
+                        topInset: 0
+                        padding: 0
 
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.row: 3
                         Layout.column: 1
+
                         Image {
                             anchors.fill: parent
+                            scale: 0.5
                             source: "misc/arrow.png"
                             rotation: 90
                         }
