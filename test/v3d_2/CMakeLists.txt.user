@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2022-09-01T21:16:08. -->
+<!-- Written by QtCreator 7.0.0, 2022-09-04T14:05:54. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -62,6 +62,9 @@
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey"/>
    <value type="bool" key="ClangCodeModel.UseGlobalConfig">true</value>
    <value type="QString" key="ClangCodeModel.WarningConfigId">Builtin.BuildSystem</value>
+   <valuemap type="QVariantMap" key="CppEditor.QuickFix">
+    <value type="bool" key="UseGlobalSettings">true</value>
+   </valuemap>
   </valuemap>
  </data>
  <data>
