@@ -54,7 +54,6 @@ class MainWindow : public QMainWindow {
   void save_conf();
   void load_conf();
   void set_connectiont();
-  void reprint();
 
   void parsing(QFile *open_file, QString fileName);
 

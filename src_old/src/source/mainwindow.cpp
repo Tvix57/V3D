@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   load_conf();
-  ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
+//  ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
   size_window = new Dialog_size();
   color_window = new QColorDialog();
   set = new settingController(this);
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
 }
 
 MainWindow::~MainWindow() {
-  save_conf();
+  set->saveSettings();
   delete ui;
   delete size_window;
   delete color_window;
@@ -55,9 +55,8 @@ void MainWindow::set_connectiont() {
 }
 
 void MainWindow::on_action_open_file_triggered() {
-  QString fileName;
-  fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home",
-                                          tr("3D model(*.obj)"));
+    QString fileName { QFileDialog::getOpenFileName(this, tr("Open File"), "/home",
+                                                    tr("3D model(*.obj)")) };
   if (!fileName.isEmpty()) {
     QFile open_file(fileName);
     if (!open_file.open(QIODevice::ReadOnly)) {
@@ -78,23 +77,23 @@ void MainWindow::get_color() {
   color_window->show();
   if (sender() == ui->get_color_pick) {
     color_window->setWindowTitle("Цвет вершин");
-    color_window->setCurrentColor(set-><QColor>getParam("dot_color"));
+    color_window->setCurrentColor(set->getParam("dot_color"));
     if (color_window->exec() == QColorDialog::Accepted) {
       set->setParam("dot_color", color_window->selectedColor());
       emit updateSettings();
     }
   } else if (sender() == ui->get_color_line) {
     color_window->setWindowTitle("Цвет ребер");
-    color_window->setCurrentColor(set-><QColor>getParam("line_color"));
+    color_window->setCurrentColor(set->getParam("line_color"));
     if (color_window->exec() == QColorDialog::Accepted) {
       set->setParam("line_color", color_window->selectedColor());
       emit updateSettings();
     }
   } else {
     color_window->setWindowTitle("Цвет фона");
-    color_window->setCurrentColor(set-><QColor>getParam("background_color"));
+    color_window->setCurrentColor(set->getParam("background_color"));
     if (color_window->exec() == QColorDialog::Accepted) {
-      background_color = color_window->selectedColor();
+      set->setParam("background_color", color_window->selectedColor());
       emit updateSettings();
     }
   }
@@ -104,14 +103,14 @@ void MainWindow::get_size() {
   size_window->show();
   if (sender() == ui->get_size_pick) {
     size_window->setWindowTitle("Размер вершин");
-    size_window->set_default(set->getParam("dots_size"), set-><QColor>getParam("dots_color"));
+    size_window->set_default(set->getParam("dots_size"), set->getParam("dots_color"));
     if (size_window->exec() == QColorDialog::Accepted) {
       set->setParam("dots_size", size_window->get_value());
       emit updateSettings();
     }
   } else {
     size_window->setWindowTitle("Размер ребер");
-    size_window->set_default(set->getParam("line_size"), set-><QColor>getParam("line_color"));
+    size_window->set_default(set->getParam("line_size"), set->getParam("line_color").value<QColor>());
     if (size_window->exec() == QColorDialog::Accepted) {
       set->setParam("line_size",size_window->get_value());
       emit updateSettings();
@@ -124,6 +123,7 @@ void MainWindow::move(QAbstractButton* btn) {
 }
 
 void MainWindow::change_type_line() {
+
   if (sender() == ui->type_line) {
     ui->type_line->setChecked(true);
     ui->type_dot_line->setChecked(false);
@@ -134,11 +134,6 @@ void MainWindow::change_type_line() {
   emit updateSettings();
 }
 
-void MainWindow::reprint() {
-//  save_conf();
-//  ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
-}
-
 void MainWindow::change_center() {
   if (sender() == ui->center) {
     ui->center->setChecked(true);
@@ -147,7 +142,7 @@ void MainWindow::change_center() {
     ui->center->setChecked(false);
     ui->center_parallel->setChecked(true);
   }
-  reprint();
+  emit updateSettings();
 }
 
 void MainWindow::type_view() {
@@ -165,10 +160,6 @@ void MainWindow::type_view() {
     ui->view_type_none->setChecked(true);
   }
   emit updateSettings();
-}
-
-void MainWindow::save_conf() {
-    set->saveSettings();
 }
 
 void MainWindow::load_conf() {
