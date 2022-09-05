@@ -14,110 +14,334 @@
    <string>3D_Viewer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>851</x>
-      <y>650</y>
-      <width>231</width>
-      <height>174</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="tabPosition">
-     <enum>QTabWidget::East</enum>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <property name="usesScrollButtons">
-     <bool>false</bool>
-    </property>
-    <property name="documentMode">
-     <bool>true</bool>
-    </property>
-    <property name="tabsClosable">
-     <bool>false</bool>
-    </property>
-    <property name="movable">
-     <bool>true</bool>
-    </property>
-    <property name="tabBarAutoHide">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="tabWidgetPage1">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <attribute name="title">
-      <string/>
-     </attribute>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="5" column="6">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="leftMargin">
-       <number>0</number>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
       </property>
-      <property name="topMargin">
-       <number>0</number>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
-      <property name="rightMargin">
-       <number>0</number>
+      <property name="tabPosition">
+       <enum>QTabWidget::East</enum>
       </property>
-      <property name="bottomMargin">
-       <number>0</number>
+      <property name="currentIndex">
+       <number>1</number>
       </property>
-      <item>
-       <layout class="QGridLayout" name="gridLayout">
+      <property name="usesScrollButtons">
+       <bool>false</bool>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="tabWidgetPage3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <attribute name="title">
+        <string/>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Масштаб</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabWidgetPage2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <attribute name="title">
+        <string/>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>X</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QDial" name="dial_4"/>
+            </item>
+            <item>
+             <widget class="QDial" name="dial"/>
+            </item>
+            <item>
+             <widget class="QDial" name="dial_2"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabWidgetPage1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <attribute name="title">
+        <string/>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <property name="sizeConstraint">
          <enum>QLayout::SetMinimumSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item row="1" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <property name="spacing">
-           <number>-1</number>
-          </property>
+        <item>
+         <layout class="QGridLayout" name="gridLayout">
           <property name="sizeConstraint">
-           <enum>QLayout::SetDefaultConstraint</enum>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
+           <enum>QLayout::SetMinimumSize</enum>
           </property>
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item>
-           <widget class="QPushButton" name="btn_forward">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="1" column="1">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>-1</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="btn_forward">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="whatsThis">
+               <string>Forward</string>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../res.qrc">
+                <normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="shortcut">
+               <string>Space</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">Group_btn_move</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_back">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="whatsThis">
+               <string>Back</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../res.qrc">
+                <normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="shortcut">
+               <string>C</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">Group_btn_move</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="btn_left">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -127,20 +351,55 @@
             <property name="minimumSize">
              <size>
               <width>50</width>
-              <height>25</height>
+              <height>50</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>50</width>
-              <height>25</height>
+              <height>50</height>
              </size>
             </property>
             <property name="whatsThis">
-             <string>Forward</string>
+             <string>Right</string>
             </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../res.qrc">
+              <normaloff>:/img/img/icons8-стрелка-48.png</normaloff>:/img/img/icons8-стрелка-48.png</iconset>
+            </property>
+            <property name="shortcut">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">Group_btn_move</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btn_up">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Up</string>
             </property>
             <property name="text">
              <string/>
@@ -149,22 +408,16 @@
              <iconset resource="../res.qrc">
               <normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</iconset>
             </property>
-            <property name="iconSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
             <property name="shortcut">
-             <string>Space</string>
+             <string>Up</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">Group_btn_move</string>
             </attribute>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="btn_back">
+          <item row="2" column="1">
+           <widget class="QPushButton" name="btn_down">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -174,17 +427,17 @@
             <property name="minimumSize">
              <size>
               <width>50</width>
-              <height>25</height>
+              <height>50</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>50</width>
-              <height>25</height>
+              <height>50</height>
              </size>
             </property>
             <property name="whatsThis">
-             <string>Back</string>
+             <string>Down</string>
             </property>
             <property name="text">
              <string/>
@@ -193,14 +446,46 @@
              <iconset resource="../res.qrc">
               <normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</iconset>
             </property>
-            <property name="iconSize">
+            <property name="shortcut">
+             <string>Down</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">Group_btn_move</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="btn_right">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
              <size>
-              <width>16</width>
-              <height>16</height>
+              <width>50</width>
+              <height>50</height>
              </size>
             </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Left</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../res.qrc">
+              <normaloff>:/img/img/icons8-стрелка,-указывающая-влево-48.png</normaloff>:/img/img/icons8-стрелка,-указывающая-влево-48.png</iconset>
+            </property>
             <property name="shortcut">
-             <string>C</string>
+             <string>Left</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">Group_btn_move</string>
@@ -209,302 +494,25 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="btn_left">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="whatsThis">
-           <string>Right</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../res.qrc">
-            <normaloff>:/img/img/icons8-стрелка-48.png</normaloff>:/img/img/icons8-стрелка-48.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Right</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">Group_btn_move</string>
-          </attribute>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="btn_up">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="whatsThis">
-           <string>Up</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../res.qrc">
-            <normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вверх-48.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Up</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">Group_btn_move</string>
-          </attribute>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="btn_down">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="whatsThis">
-           <string>Down</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../res.qrc">
-            <normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</normaloff>:/img/img/icons8-толстая-стрелка-вниз-48.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Down</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">Group_btn_move</string>
-          </attribute>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="btn_right">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="whatsThis">
-           <string>Left</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../res.qrc">
-            <normaloff>:/img/img/icons8-стрелка,-указывающая-влево-48.png</normaloff>:/img/img/icons8-стрелка,-указывающая-влево-48.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Left</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">Group_btn_move</string>
-          </attribute>
-         </widget>
-        </item>
        </layout>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="tabWidgetPage2">
-     <property name="minimumSize">
-      <size>
-       <width>200</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>200</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <attribute name="title">
-      <string/>
-     </attribute>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Вращение Z</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_5">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Вращение Y</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Вращение X</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QDial" name="dial_4"/>
-          </item>
-          <item>
-           <widget class="QDial" name="dial"/>
-          </item>
-          <item>
-           <widget class="QDial" name="dial_2"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="tabWidgetPage3">
-     <attribute name="title">
-      <string/>
-     </attribute>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetMaximumSize</enum>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Масштаб</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="GLWidget" name="open_GLWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>0</y>
-      <width>851</width>
-      <height>691</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">width: 100%;
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="6" colspan="7">
+     <widget class="GLWidget" name="open_GLWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">width: 100%;
 height: 100%;</string>
-    </property>
-   </widget>
+      </property>
+     </widget>
+    </item>
+   </layout>
    <zorder>open_GLWidget</zorder>
    <zorder>tabWidget</zorder>
   </widget>
@@ -578,9 +586,30 @@ height: 100%;</string>
     <addaction name="menu_3"/>
     <addaction name="menu_7"/>
     <addaction name="get_back_color"/>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menu_8">
+    <property name="title">
+     <string>Фон</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <widget class="QMenu" name="menutest">
+     <property name="title">
+      <string>test</string>
+     </property>
+     <addaction name="actiontest_2"/>
+    </widget>
+    <addaction name="actionAbout"/>
+    <addaction name="menutest"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
+   <addaction name="menu_8"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_open_file">
@@ -685,6 +714,21 @@ height: 100%;</string>
    </property>
    <property name="text">
     <string>none</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Текстуры</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actiontest_2">
+   <property name="text">
+    <string>test</string>
    </property>
   </action>
  </widget>

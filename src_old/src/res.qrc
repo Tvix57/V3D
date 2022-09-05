@@ -4,5 +4,8 @@
         <file>img/icons8-стрелка,-указывающая-влево-48.png</file>
         <file>img/icons8-толстая-стрелка-вверх-48.png</file>
         <file>img/icons8-толстая-стрелка-вниз-48.png</file>
+        <file>img/rotate.png</file>
+        <file>img/vectors.png</file>
+        <file>img/3d-cube.png</file>
     </qresource>
 </RCC>

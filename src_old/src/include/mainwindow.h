@@ -49,11 +49,10 @@ class MainWindow : public QMainWindow {
   void close_save_file();
   void save_conf();
   void load_conf();
+  void set_connectiont();
   void reprint();
 
   void parsing(QFile *open_file, QString fileName);
-
-  //  void draw();
 
   Ui::MainWindow *ui;
   QGifImage *gif;

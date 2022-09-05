@@ -12,41 +12,7 @@ MainWindow::MainWindow(QWidget* parent)
   ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
   size_window = new Dialog_size();
   color_window = new QColorDialog();
-
-
-//  ui->open_GLWidget->setParent(this);s
-  ui->open_GLWidget->setBaseSize(this->baseSize());
-//  ui->open_GLWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::MinimumExpanding);
-
-
-
-  ui->tabWidget->setTabBarAutoHide(true);
-
-  connect(ui->get_color_line, SIGNAL(triggered()), this, SLOT(get_color()));
-  connect(ui->get_back_color, SIGNAL(triggered()), this, SLOT(get_color()));
-  connect(ui->get_color_pick, SIGNAL(triggered()), this, SLOT(get_color()));
-
-  connect(ui->get_size_pick, SIGNAL(triggered()), this, SLOT(get_size()));
-  connect(ui->get_size_line, SIGNAL(triggered()), this, SLOT(get_size()));
-
-  connect(ui->Group_btn_move, SIGNAL(buttonClicked(QAbstractButton*)), this,
-          SLOT(move(QAbstractButton*)));
-
-  connect(ui->type_line, SIGNAL(triggered()), this, SLOT(change_type_line()));
-  connect(ui->type_dot_line, SIGNAL(triggered()), this,
-          SLOT(change_type_line()));
-
-  connect(ui->view_type_circle, SIGNAL(triggered()), this, SLOT(type_view()));
-  connect(ui->view_type_qadro, SIGNAL(triggered()), this, SLOT(type_view()));
-  connect(ui->view_type_none, SIGNAL(triggered()), this, SLOT(type_view()));
-
-  connect(ui->center, SIGNAL(triggered()), this, SLOT(change_center()));
-  connect(ui->center_parallel, SIGNAL(triggered()), this,
-          SLOT(change_center()));
-
-  connect(ui->save_Bnp, SIGNAL(triggered()), this, SLOT(save_model()));
-  connect(ui->save_Jpeg, SIGNAL(triggered()), this, SLOT(save_model()));
-  connect(ui->save_gif, SIGNAL(triggered()), this, SLOT(save_model()));
+  set_connectiont();
 }
 
 MainWindow::~MainWindow() {
@@ -56,9 +22,36 @@ MainWindow::~MainWindow() {
   delete color_window;
 }
 
+void MainWindow::set_connectiont() {
+    connect(ui->get_color_line, SIGNAL(triggered()), this, SLOT(get_color()));
+    connect(ui->get_back_color, SIGNAL(triggered()), this, SLOT(get_color()));
+    connect(ui->get_color_pick, SIGNAL(triggered()), this, SLOT(get_color()));
+
+    connect(ui->get_size_pick, SIGNAL(triggered()), this, SLOT(get_size()));
+    connect(ui->get_size_line, SIGNAL(triggered()), this, SLOT(get_size()));
+
+    connect(ui->Group_btn_move, SIGNAL(buttonClicked(QAbstractButton*)), this,
+            SLOT(move(QAbstractButton*)));
+
+    connect(ui->type_line, SIGNAL(triggered()), this, SLOT(change_type_line()));
+    connect(ui->type_dot_line, SIGNAL(triggered()), this,
+            SLOT(change_type_line()));
+
+    connect(ui->view_type_circle, SIGNAL(triggered()), this, SLOT(type_view()));
+    connect(ui->view_type_qadro, SIGNAL(triggered()), this, SLOT(type_view()));
+    connect(ui->view_type_none, SIGNAL(triggered()), this, SLOT(type_view()));
+
+    connect(ui->center, SIGNAL(triggered()), this, SLOT(change_center()));
+    connect(ui->center_parallel, SIGNAL(triggered()), this,
+            SLOT(change_center()));
+
+    connect(ui->save_Bnp, SIGNAL(triggered()), this, SLOT(save_model()));
+    connect(ui->save_Jpeg, SIGNAL(triggered()), this, SLOT(save_model()));
+    connect(ui->save_gif, SIGNAL(triggered()), this, SLOT(save_model()));
+}
+
 void MainWindow::on_action_open_file_triggered() {
   QString fileName;
-  fileName.clear();
   fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home",
                                           tr("3D model(*.obj)"));
   if (fileName.isEmpty()) {
@@ -265,7 +258,6 @@ void MainWindow::save_model() {
     qDebug() << "cant open model file to save";
   } else {
     if (sender() == ui->save_gif) {
-      //        /////show msg is "record start after 3..2..1
       Make_Gif();
     } else {
       ui->open_GLWidget->grabFramebuffer().save(ptr_save_file);
