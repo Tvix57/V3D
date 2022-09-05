@@ -29,6 +29,8 @@ RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.ui
 
 SOURCES += \
+    fileloader.cpp \
+    settingcontroller.cpp \
     source/dialog_size.cpp \
     source/glwidget.cpp \
     source/main.cpp \
@@ -36,10 +38,12 @@ SOURCES += \
     source/parser.c
 
 HEADERS += \
+    fileloader.h \
     include/dialog_size.h \
     include/glwidget.h \
     include/mainwindow.h \
-    include/parser.h
+    include/parser.h \
+    settingcontroller.h
 
 FORMS += \
     frontend/dialog_size.ui \

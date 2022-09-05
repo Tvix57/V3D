@@ -9,14 +9,16 @@
 #include <QOpenGLWidget>
 #include <QPixmap>
 #include <QPushButton>
-#include <QSettings>
+//#include <QSettings>
 #include <QSlider>
 #include <QTimer>
-#include <QVector3D>
+//#include <QVector3D>
 #include <QWidget>
+#include <QColor>
 
 #include "dialog_size.h"
 #include "qgifimage.h"
+#include "settingcontroller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,6 +33,9 @@ class MainWindow : public QMainWindow {
   explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
+ signals:
+  void updateSettings();
+
  private slots:
   void on_action_open_file_triggered();
   void get_color();
@@ -42,7 +47,6 @@ class MainWindow : public QMainWindow {
 
   void save_model();
   void Record_Gif();
-
 
  private:
   void Make_Gif();
@@ -59,9 +63,11 @@ class MainWindow : public QMainWindow {
   QTimer *timer;
   QColorDialog *color_window;
   Dialog_size *size_window;
-  QColor dot_color, line_color, background_color;
+
   QFile *ptr_save_file;
-  int line_size, dot_size;
-  int frameCounter;
+
+  int frameCounter;///////
+  settingController *set;
+
 };
 #endif  // SRC_INCLUDE_MAINWINDOW_H_
