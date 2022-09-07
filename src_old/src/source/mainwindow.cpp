@@ -25,6 +25,17 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::set_connectiont() {
+
+    connect(ui->Group_btn_move, SIGNAL(buttonClicked(QAbstractButton*)), this,
+            SLOT(move(QAbstractButton*)));
+
+    connect(ui->save_Bnp, SIGNAL(triggered()), this, SLOT(save_model()));
+    connect(ui->save_Jpeg, SIGNAL(triggered()), this, SLOT(save_model()));
+    connect(ui->save_gif, SIGNAL(triggered()), this, SLOT(save_model()));
+
+
+
+
     connect(ui->get_color_line, SIGNAL(triggered()), this, SLOT(get_color()));
     connect(ui->get_back_color, SIGNAL(triggered()), this, SLOT(get_color()));
     connect(ui->get_color_pick, SIGNAL(triggered()), this, SLOT(get_color()));
@@ -32,8 +43,7 @@ void MainWindow::set_connectiont() {
     connect(ui->get_size_pick, SIGNAL(triggered()), this, SLOT(get_size()));
     connect(ui->get_size_line, SIGNAL(triggered()), this, SLOT(get_size()));
 
-    connect(ui->Group_btn_move, SIGNAL(buttonClicked(QAbstractButton*)), this,
-            SLOT(move(QAbstractButton*)));
+
 
     connect(ui->type_line, SIGNAL(triggered()), this, SLOT(change_type_line()));
     connect(ui->type_dot_line, SIGNAL(triggered()), this,
@@ -46,11 +56,6 @@ void MainWindow::set_connectiont() {
     connect(ui->center, SIGNAL(triggered()), this, SLOT(change_center()));
     connect(ui->center_parallel, SIGNAL(triggered()), this,
             SLOT(change_center()));
-
-    connect(ui->save_Bnp, SIGNAL(triggered()), this, SLOT(save_model()));
-    connect(ui->save_Jpeg, SIGNAL(triggered()), this, SLOT(save_model()));
-    connect(ui->save_gif, SIGNAL(triggered()), this, SLOT(save_model()));
-
 
 }
 
@@ -77,24 +82,21 @@ void MainWindow::get_color() {
   color_window->show();
   if (sender() == ui->get_color_pick) {
     color_window->setWindowTitle("Цвет вершин");
-    color_window->setCurrentColor(set->getParam("dot_color"));
+    color_window->setCurrentColor(set->getParam("dot_color").value<QColor>());
     if (color_window->exec() == QColorDialog::Accepted) {
       set->setParam("dot_color", color_window->selectedColor());
-      emit updateSettings();
     }
   } else if (sender() == ui->get_color_line) {
     color_window->setWindowTitle("Цвет ребер");
-    color_window->setCurrentColor(set->getParam("line_color"));
+    color_window->setCurrentColor(set->getParam("line_color").value<QColor>());
     if (color_window->exec() == QColorDialog::Accepted) {
       set->setParam("line_color", color_window->selectedColor());
-      emit updateSettings();
     }
   } else {
     color_window->setWindowTitle("Цвет фона");
-    color_window->setCurrentColor(set->getParam("background_color"));
+    color_window->setCurrentColor(set->getParam("background_color").value<QColor>());
     if (color_window->exec() == QColorDialog::Accepted) {
       set->setParam("background_color", color_window->selectedColor());
-      emit updateSettings();
     }
   }
 }
@@ -103,17 +105,15 @@ void MainWindow::get_size() {
   size_window->show();
   if (sender() == ui->get_size_pick) {
     size_window->setWindowTitle("Размер вершин");
-    size_window->set_default(set->getParam("dots_size"), set->getParam("dots_color"));
+    size_window->set_default(set->getParam("dots_size").toInt(), set->getParam("dots_color").value<QColor>());
     if (size_window->exec() == QColorDialog::Accepted) {
       set->setParam("dots_size", size_window->get_value());
-      emit updateSettings();
     }
   } else {
     size_window->setWindowTitle("Размер ребер");
-    size_window->set_default(set->getParam("line_size"), set->getParam("line_color").value<QColor>());
+    size_window->set_default(set->getParam("line_size").toInt(), set->getParam("line_color").value<QColor>());
     if (size_window->exec() == QColorDialog::Accepted) {
       set->setParam("line_size",size_window->get_value());
-      emit updateSettings();
     }
   }
 }
@@ -123,15 +123,14 @@ void MainWindow::move(QAbstractButton* btn) {
 }
 
 void MainWindow::change_type_line() {
-
   if (sender() == ui->type_line) {
     ui->type_line->setChecked(true);
     ui->type_dot_line->setChecked(false);
   } else {
-    ui->type_line->setChecked(false);
     ui->type_dot_line->setChecked(true);
+    ui->type_line->setChecked(false);
   }
-  emit updateSettings();
+  set->setParam("type_line/"+sender()->objectName(), 0);
 }
 
 void MainWindow::change_center() {
@@ -142,7 +141,7 @@ void MainWindow::change_center() {
     ui->center->setChecked(false);
     ui->center_parallel->setChecked(true);
   }
-  emit updateSettings();
+  set->setParam(sender()->objectName(), 0);
 }
 
 void MainWindow::type_view() {
@@ -159,7 +158,6 @@ void MainWindow::type_view() {
     ui->view_type_qadro->setChecked(false);
     ui->view_type_none->setChecked(true);
   }
-  emit updateSettings();
 }
 
 void MainWindow::load_conf() {

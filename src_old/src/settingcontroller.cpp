@@ -40,6 +40,10 @@ void settingController::loadSettting() {
 }
 
 void settingController::saveSettings() {
+    settings.clear();
+    settings.setValue("settings/type_line", type_line);
+    settings.setValue("settings/center", center);
+    settings.setValue("settings/dot_type", dot_type);
     settings.setValue("settings/dot_size", dot_size);
     settings.setValue("settings/line_size", line_size);
     settings.setValue("settings/line_color", line_color);
@@ -48,33 +52,28 @@ void settingController::saveSettings() {
     settings.sync();
 }
 
-auto settingController::getParam(QString param) {
+QVariant settingController::getParam(QString param) {
     if (param.contains("color")) {
         if (param.contains("line")) {
-            auto info = line_color;
-            return info;
+            return line_color;
         } else if (param.contains("dots")) {
-            auto info = dot_color;
-            return info;
+            return dot_color;
         } else if (param.contains("background")) {
-            auto info = background_color;
-            return info;
+            return background_color;
         }
     } else if (param.contains("size")) {
         if (param.contains("line")) {
-            auto info = line_size;
-            return info;
+            return line_size;
         } else if (param.contains("dots")) {
-            auto info = dot_size;
-            return info;
+            return dot_size;
         }
-    } else {
-        auto info = nullptr;
-        return info;
     }
+    emit getNewSetting();
 }
 
 void settingController::setParam(QString param, QColor data) {
+    QString write("settings/");
+     write.append(param);
     if (param.contains("line")) {
         line_color = data;
     } else if (param.contains("dots")) {
@@ -85,29 +84,6 @@ void settingController::setParam(QString param, QColor data) {
 }
 
 void settingController::setParam(QString param,  int data) {
-
-//    settings.clear();
-    QString write("settings/");
-     write.append(param);
-    if (ui->type_line->isChecked()) {
-      settings.setValue("settings/type_line", true);
-    } else if (ui->type_dot_line->isChecked()) {
-      settings.setValue("settings/type_dot_line", true);
-    }
-
-    if (ui->center->isChecked()) {
-      settings.setValue("settings/center", true);
-    } else if (ui->center_parallel->isChecked()) {
-      settings.setValue("settings/center_parallel", true);
-    }
-
-    if (ui->view_type_circle->isChecked()) {
-      settings.setValue("settings/view_type_circle", true);
-    } else if (ui->view_type_qadro->isChecked()) {
-      settings.setValue("settings/view_type_qadro", true);
-    } else if (ui->view_type_none->isChecked()) {
-      settings.setValue("settings/view_type_none", true);
-    }
     if (param.contains("size")) {
         if (param.contains("dots")) {
             line_size = data;

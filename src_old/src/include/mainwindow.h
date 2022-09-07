@@ -33,9 +33,6 @@ class MainWindow : public QMainWindow {
   explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
- signals:
-  void updateSettings();
-
  private slots:
   void on_action_open_file_triggered();
   void get_color();
