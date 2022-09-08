@@ -567,138 +567,121 @@ height: 100%;</string>
      <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="menu_file">
     <property name="title">
      <string>Файл</string>
     </property>
-    <widget class="QMenu" name="menu_5">
+    <widget class="QMenu" name="menu_save_file">
      <property name="title">
       <string>Сохранить как</string>
      </property>
-     <addaction name="save_Jpeg"/>
-     <addaction name="save_Bnp"/>
-     <addaction name="save_gif"/>
+     <addaction name="actionSaveJpeg"/>
+     <addaction name="actionSaveBnp"/>
+     <addaction name="actionSaveGif"/>
     </widget>
-    <addaction name="action_open_file"/>
-    <addaction name="menu_5"/>
+    <addaction name="actionOpenFile"/>
+    <addaction name="menu_save_file"/>
    </widget>
-   <widget class="QMenu" name="menu_2">
+   <widget class="QMenu" name="menu_model">
     <property name="title">
-     <string>Настройки</string>
+     <string>Модель</string>
     </property>
-    <widget class="QMenu" name="menu_4">
+    <widget class="QMenu" name="menu_line">
      <property name="title">
-      <string>Тип проекции</string>
+      <string>Ребра</string>
      </property>
-     <addaction name="center_parallel"/>
-     <addaction name="center"/>
-    </widget>
-    <widget class="QMenu" name="menu_3">
-     <property name="title">
-      <string>Настройка ребер</string>
-     </property>
-     <widget class="QMenu" name="menu_6">
+     <widget class="QMenu" name="type_line">
       <property name="title">
        <string>Тип</string>
       </property>
-      <addaction name="type_line"/>
-      <addaction name="type_dot/line"/>
+      <addaction name="actionLine"/>
+      <addaction name="actionLineDots"/>
      </widget>
-     <addaction name="menu_6"/>
-     <addaction name="get_size_line"/>
-     <addaction name="get_color_line"/>
+     <addaction name="type_line"/>
+     <addaction name="actionLineSize"/>
+     <addaction name="actionLineColor"/>
     </widget>
-    <widget class="QMenu" name="menu_7">
+    <widget class="QMenu" name="menu_dots">
      <property name="title">
-      <string>Настройка вершин</string>
+      <string>Вершины</string>
      </property>
-     <widget class="QMenu" name="menu_9">
+     <widget class="QMenu" name="dotsType">
       <property name="title">
        <string>Способ отображения</string>
       </property>
-      <addaction name="view_type_none"/>
-      <addaction name="view_type_qadro"/>
-      <addaction name="view_type_circle"/>
+      <addaction name="actionNone"/>
+      <addaction name="actionQadro"/>
+      <addaction name="actionCircle"/>
      </widget>
-     <addaction name="get_size_pick"/>
-     <addaction name="get_color_pick"/>
-     <addaction name="menu_9"/>
+     <addaction name="actionDotsSize"/>
+     <addaction name="actionDotsColor"/>
+     <addaction name="dotsType"/>
     </widget>
-    <addaction name="menu_4"/>
-    <addaction name="menu_3"/>
-    <addaction name="menu_7"/>
-    <addaction name="get_back_color"/>
+    <addaction name="menu_line"/>
+    <addaction name="menu_dots"/>
     <addaction name="action"/>
    </widget>
-   <widget class="QMenu" name="menu_8">
+   <widget class="QMenu" name="menu_background">
     <property name="title">
      <string>Фон</string>
     </property>
+    <addaction name="actionBackColor"/>
+    <addaction name="actionLight"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <widget class="QMenu" name="menutest">
+    <widget class="QMenu" name="actionGuide">
      <property name="title">
-      <string>test</string>
+      <string>Guide</string>
      </property>
-     <addaction name="actiontest_2"/>
     </widget>
     <addaction name="actionAbout"/>
-    <addaction name="menutest"/>
+    <addaction name="actionGuide"/>
+    <addaction name="actionExit"/>
    </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_8"/>
+   <widget class="QMenu" name="menu_camera">
+    <property name="title">
+     <string>Камера</string>
+    </property>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>Тип проекции</string>
+     </property>
+     <addaction name="actionCentrall"/>
+     <addaction name="actionParallel"/>
+    </widget>
+    <addaction name="menu"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_model"/>
+   <addaction name="menu_background"/>
+   <addaction name="menu_camera"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_open_file">
+  <action name="actionOpenFile">
    <property name="text">
     <string>Добавить модель</string>
    </property>
   </action>
-  <action name="center_parallel">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Паралельная</string>
-   </property>
-  </action>
-  <action name="center">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Центральная</string>
-   </property>
-  </action>
-  <action name="save_Jpeg">
+  <action name="actionSaveJpeg">
    <property name="text">
     <string>Jpeg</string>
    </property>
   </action>
-  <action name="save_Bnp">
+  <action name="actionSaveBnp">
    <property name="text">
     <string>Bmp</string>
    </property>
   </action>
-  <action name="get_back_color">
-   <property name="text">
-    <string>Цвет фона</string>
-   </property>
-  </action>
-  <action name="save_gif">
+  <action name="actionSaveGif">
    <property name="text">
     <string>Gif</string>
    </property>
   </action>
-  <action name="type_line">
+  <action name="actionLine">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -706,7 +689,7 @@ height: 100%;</string>
     <string>Линии</string>
    </property>
   </action>
-  <action name="type_dot/line">
+  <action name="actionLineDots">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -714,27 +697,27 @@ height: 100%;</string>
     <string>Пунктир</string>
    </property>
   </action>
-  <action name="get_size_line">
+  <action name="actionLineSize">
    <property name="text">
     <string>Толщина</string>
    </property>
   </action>
-  <action name="get_color_line">
+  <action name="actionLineColor">
    <property name="text">
     <string>Цвет</string>
    </property>
   </action>
-  <action name="get_size_pick">
+  <action name="actionDotsSize">
    <property name="text">
     <string>Размер</string>
    </property>
   </action>
-  <action name="get_color_pick">
+  <action name="actionDotsColor">
    <property name="text">
     <string>Цвет</string>
    </property>
   </action>
-  <action name="view_type_circle">
+  <action name="actionCircle">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -742,7 +725,7 @@ height: 100%;</string>
     <string>Круг</string>
    </property>
   </action>
-  <action name="view_type_qadro">
+  <action name="actionQadro">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -750,7 +733,7 @@ height: 100%;</string>
     <string>Квадрат</string>
    </property>
   </action>
-  <action name="view_type_none">
+  <action name="actionNone">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -768,9 +751,35 @@ height: 100%;</string>
     <string>About</string>
    </property>
   </action>
-  <action name="actiontest_2">
+  <action name="actionBackColor">
    <property name="text">
-    <string>test</string>
+    <string>Цвет</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="text">
+    <string>Свет</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionCentrall">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Центральная</string>
+   </property>
+  </action>
+  <action name="actionParallel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Паралельная</string>
    </property>
   </action>
  </widget>

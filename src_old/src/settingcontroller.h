@@ -19,8 +19,7 @@ public:
 
 signals:
     void getNewSetting();
-//public slots:
-//    void updateParam(QString, void);
+
 private:
     QSettings settings { "Ajhin_team", "3D_viewer" };
     int line_size, dot_size;

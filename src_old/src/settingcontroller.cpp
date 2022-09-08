@@ -4,34 +4,13 @@
 settingController::settingController(QObject *parent)
     : QObject{parent}
 {
-
+    loadSettting();
 }
 
 void settingController::loadSettting() {
-//    ui->type_line->setChecked(
-//        settings.value("settings/type_line", false).toBool());
-//    ui->type_dot_line->setChecked(
-//        settings.value("settings/type_dot_line", false).toBool());
-//    if (!ui->type_line->isChecked() && !ui->type_dot_line->isChecked()) {
-//      ui->type_line->setChecked(true);
-//    }
-//    ui->center->setChecked(settings.value("settings/center", false).toBool());
-//    ui->center_parallel->setChecked(
-//        settings.value("settings/center_parallel", false).toBool());
-//    if (!ui->center->isChecked() && !ui->center_parallel->isChecked()) {
-//      ui->center->setChecked(true);
-//    }
-//    ui->view_type_circle->setChecked(
-//        settings.value("settings/view_type_circle", false).toBool());
-//    ui->view_type_qadro->setChecked(
-//        settings.value("settings/view_type_qadro", false).toBool());
-//    ui->view_type_none->setChecked(
-//        settings.value("settings/view_type_none", false).toBool());
-//    if (!ui->view_type_none->isChecked() && !ui->view_type_qadro->isChecked() &&
-//        !ui->view_type_circle->isChecked()) {
-//      ui->view_type_none->setChecked(true);
-//    }
-
+    type_line = settings.value("settings/type_line", 0).toInt();
+    center = settings.value("settings/center", 0).toInt();
+    dot_type = settings.value("settings/dot_type", 0).toInt();
     dot_color = settings.value("settings/dot_color", QColor(Qt::green)).value<QColor>();
     background_color = settings.value("settings/background_color", QColor(Qt::black)).value<QColor>();
     line_color = settings.value("settings/line_color", QColor(Qt::blue)).value<QColor>();
@@ -43,8 +22,8 @@ void settingController::saveSettings() {
     settings.clear();
     settings.setValue("settings/type_line", type_line);
     settings.setValue("settings/center", center);
-    settings.setValue("settings/dot_type", dot_type);
-    settings.setValue("settings/dot_size", dot_size);
+    settings.setValue("settings/dots_type", dot_type);
+    settings.setValue("settings/dots_size", dot_size);
     settings.setValue("settings/line_size", line_size);
     settings.setValue("settings/line_color", line_color);
     settings.setValue("settings/dots_color", dot_color);
@@ -53,27 +32,36 @@ void settingController::saveSettings() {
 }
 
 QVariant settingController::getParam(QString param) {
+    QVariant data;
+    data.clear();
     if (param.contains("color")) {
         if (param.contains("line")) {
-            return line_color;
+            data = line_color;
         } else if (param.contains("dots")) {
-            return dot_color;
+            data = dot_color;
         } else if (param.contains("background")) {
-            return background_color;
+            data = background_color;
         }
     } else if (param.contains("size")) {
         if (param.contains("line")) {
-            return line_size;
+            data = line_size;
         } else if (param.contains("dots")) {
-            return dot_size;
+            data = dot_size;
         }
+    } else if (param.contains("type")) {
+        if (param.contains("line")) {
+            data = type_line;
+        } else if (param.contains("dots"))  {
+            data = dot_type;
+        }
+    } else {
+        data = center;
     }
     emit getNewSetting();
+    return data;
 }
 
 void settingController::setParam(QString param, QColor data) {
-    QString write("settings/");
-     write.append(param);
     if (param.contains("line")) {
         line_color = data;
     } else if (param.contains("dots")) {
@@ -90,6 +78,13 @@ void settingController::setParam(QString param,  int data) {
         } else if (param.contains("line")) {
             dot_size = data;
         }
+    } else if (param.contains("type")){
+        if (param.contains("dots")) {
+            type_line = data;
+        } else if (param.contains("line")) {
+            dot_type = data;
+        }
+    } else {
+        center = data;
     }
-
 }

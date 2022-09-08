@@ -34,18 +34,20 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
  private slots:
-  void on_action_open_file_triggered();
   void get_color();
   void get_size();
   void move(QAbstractButton *btn);
-  void change_type_line();
+//  void change_type_line();
+  void change_type_line(QAction*);
   void change_center();
   void type_view();
 
   void save_model();
   void Record_Gif();
 
- private:
+  void on_actionOpenFile_triggered();
+
+private:
   void Make_Gif();
   void close_save_file();
   void save_conf();
