@@ -7,12 +7,10 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QOpenGLWidget>
-#include <QPixmap>
+//#include <QPixmap>
 #include <QPushButton>
-//#include <QSettings>
-#include <QSlider>
+//#include <QSlider>
 #include <QTimer>
-//#include <QVector3D>
 #include <QWidget>
 #include <QColor>
 
@@ -37,14 +35,11 @@ class MainWindow : public QMainWindow {
   void get_color();
   void get_size();
   void move(QAbstractButton *btn);
-//  void change_type_line();
   void change_type_line(QAction*);
-  void change_center();
-  void type_view();
-
-  void save_model();
+  void change_center(QAction*);
+  void type_dots(QAction*);
+  void save_model(QAction*);
   void Record_Gif();
-
   void on_actionOpenFile_triggered();
 
 private:
@@ -53,6 +48,7 @@ private:
   void save_conf();
   void load_conf();
   void set_connectiont();
+  void all_disable(QList<QAction*>);
 
   void parsing(QFile *open_file, QString fileName);
 

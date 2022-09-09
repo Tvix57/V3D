@@ -36,7 +36,7 @@
        <enum>QTabWidget::East</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -645,14 +645,14 @@ height: 100%;</string>
     <property name="title">
      <string>Камера</string>
     </property>
-    <widget class="QMenu" name="menu">
+    <widget class="QMenu" name="menu_proection">
      <property name="title">
       <string>Тип проекции</string>
      </property>
      <addaction name="actionCentrall"/>
      <addaction name="actionParallel"/>
     </widget>
-    <addaction name="menu"/>
+    <addaction name="menu_proection"/>
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_model"/>
