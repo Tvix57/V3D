@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget* parent)
   load_conf();
   //  ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
   set_connectiont();
+  all_invisible();
 }
 
 MainWindow::~MainWindow() {
@@ -111,6 +112,16 @@ void MainWindow::all_disable(QList<QAction*> menu) {
     }
 }
 
+void MainWindow::all_invisible() {
+    QWidget *tab;
+//    foreach(tab, ui->tabWidget->widget) {
+//        tab->setVisible(false);
+//    }
+
+    ui->tabWidgetPage1->setVisible(false);
+    ui->tabWidgetPage2->setVisible(false);
+    ui->tabWidgetPage3->setVisible(false);
+}
 void MainWindow::load_conf() {
     switch(set->getParam("dots_type").toInt()) {
     case 1: {
@@ -217,3 +228,12 @@ void MainWindow::on_actionOpenFile_triggered() {
     }
   }
 }
+
+void MainWindow::on_tabWidget_tabBarClicked(int index) {
+    bool flag = ui->tabWidget->widget(index)->isVisible();
+    all_invisible();
+    if (!flag) {
+        ui->tabWidget->widget(index)->setVisible(true);
+    }
+}
+

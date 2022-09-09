@@ -41,6 +41,9 @@ class MainWindow : public QMainWindow {
   void save_model(QAction*);
   void Record_Gif();
   void on_actionOpenFile_triggered();
+//  void tab_c
+
+  void on_tabWidget_tabBarClicked(int index);
 
 private:
   void Make_Gif();
@@ -48,6 +51,7 @@ private:
   void save_conf();
   void load_conf();
   void set_connectiont();
+  void all_invisible();
   void all_disable(QList<QAction*>);
 
   void parsing(QFile *open_file, QString fileName);
