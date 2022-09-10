@@ -53,6 +53,7 @@ private:
   void set_connectiont();
   void all_invisible();
   void all_disable(QList<QAction*>);
+  void fst_run();
 
   void parsing(QFile *open_file, QString fileName);
 

@@ -36,7 +36,7 @@
        <enum>QTabWidget::East</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -67,8 +67,8 @@
         </sizepolicy>
        </property>
        <attribute name="icon">
-        <iconset>
-         <normaloff>../img/3d-cube.png</normaloff>../img/3d-cube.png</iconset>
+        <iconset resource="../res.qrc">
+         <normaloff>:/img/img/3d-cube.png</normaloff>:/img/img/3d-cube.png</iconset>
        </attribute>
        <attribute name="title">
         <string/>
@@ -138,62 +138,19 @@
         <bool>false</bool>
        </property>
        <attribute name="icon">
-        <iconset>
-         <normaloff>../img/rotate.png</normaloff>../img/rotate.png</iconset>
+        <iconset resource="../res.qrc">
+         <normaloff>:/img/img/rotate.png</normaloff>:/img/img/rotate.png</iconset>
        </attribute>
        <attribute name="title">
         <string/>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QHBoxLayout" name="rotationLayout">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QLabel" name="label_6">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Z</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Y</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>X</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QDial" name="dial_4">
+             <widget class="QDial" name="dial_2">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                 <horstretch>0</horstretch>
@@ -213,12 +170,55 @@
              </widget>
             </item>
             <item>
-             <widget class="QDial" name="dial_2">
+             <widget class="QDial" name="dial_4">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>X</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Z</string>
               </property>
              </widget>
             </item>
@@ -236,8 +236,8 @@
         </sizepolicy>
        </property>
        <attribute name="icon">
-        <iconset>
-         <normaloff>../img/vectors.png</normaloff>../img/vectors.png</iconset>
+        <iconset resource="../res.qrc">
+         <normaloff>:/img/img/vectors.png</normaloff>:/img/img/vectors.png</iconset>
        </attribute>
        <attribute name="title">
         <string/>
