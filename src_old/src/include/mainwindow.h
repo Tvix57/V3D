@@ -1,18 +1,14 @@
 #ifndef SRC_INCLUDE_MAINWINDOW_H_
 #define SRC_INCLUDE_MAINWINDOW_H_
 
-#include <QColorDialog>
-#include <QDataStream>
-#include <QFile>
-#include <QFileDialog>
 #include <QMainWindow>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QFile>
 #include <QOpenGLWidget>
-//#include <QPixmap>
 #include <QPushButton>
-//#include <QSlider>
 #include <QTimer>
 #include <QWidget>
-#include <QColor>
 
 #include "dialog_size.h"
 #include "qgifimage.h"
@@ -41,11 +37,9 @@ class MainWindow : public QMainWindow {
   void save_model(QAction*);
   void Record_Gif();
   void on_actionOpenFile_triggered();
-//  void tab_c
-
   void on_tabWidget_tabBarClicked(int index);
 
-private:
+ private:
   void Make_Gif();
   void close_save_file();
   void save_conf();
@@ -53,7 +47,6 @@ private:
   void set_connectiont();
   void all_invisible();
   void all_disable(QList<QAction*>);
-  void fst_run();
 
   void parsing(QFile *open_file, QString fileName);
 

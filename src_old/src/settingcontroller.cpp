@@ -8,19 +8,19 @@ settingController::settingController(QObject *parent)
 }
 
 void settingController::loadSettting() {
-    type_line = settings.value("settings/type_line", 0).toInt();
+    type_line = settings.value("settings/line_type", 0).toInt();
     center = settings.value("settings/center", 0).toInt();
-    dot_type = settings.value("settings/dot_type", 0).toInt();
-    dot_color = settings.value("settings/dot_color", QColor(Qt::green)).value<QColor>();
+    dot_type = settings.value("settings/dots_type", 0).toInt();
+    dot_color = settings.value("settings/dots_color", QColor(Qt::green)).value<QColor>();
     background_color = settings.value("settings/background_color", QColor(Qt::black)).value<QColor>();
     line_color = settings.value("settings/line_color", QColor(Qt::blue)).value<QColor>();
-    line_size = settings.value("settings/dot_size", 2).toInt();
-    dot_size = settings.value("settings/line_size", 2).toInt();
+    line_size = settings.value("settings/line_size", 2).toInt();
+    dot_size = settings.value("settings/dots_size", 2).toInt();
 }
 
 void settingController::saveSettings() {
     settings.clear();
-    settings.setValue("settings/type_line", type_line);
+    settings.setValue("settings/line_type", type_line);
     settings.setValue("settings/center", center);
     settings.setValue("settings/dots_type", dot_type);
     settings.setValue("settings/dots_size", dot_size);
@@ -74,15 +74,15 @@ void settingController::setParam(QString param, QColor data) {
 void settingController::setParam(QString param,  int data) {
     if (param.contains("size")) {
         if (param.contains("dots")) {
-            line_size = data;
-        } else if (param.contains("line")) {
             dot_size = data;
+        } else if (param.contains("line")) {
+            line_size = data;
         }
     } else if (param.contains("type")){
         if (param.contains("dots")) {
-            type_line = data;
-        } else if (param.contains("line")) {
             dot_type = data;
+        } else if (param.contains("line")) {
+            type_line = data;
         }
     } else {
         center = data;

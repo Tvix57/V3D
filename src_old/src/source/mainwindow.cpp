@@ -1,9 +1,6 @@
 #include "mainwindow.h"
-#include <QLayout>
+//#include <QLayout>
 #include "ui_mainwindow.h"
-
-using std::string;
-using std::vector;
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -12,9 +9,7 @@ MainWindow::MainWindow(QWidget* parent)
   color_window = new QColorDialog();
   set = new settingController();
   load_conf();
-  //  ui->open_GLWidget->get_setting(QSettings("Ajhin_team", "3D_viewer"));
   set_connectiont();
-  fst_run();
   all_invisible();
 }
 
@@ -48,9 +43,9 @@ void MainWindow::get_color() {
   color_window->show();
   if (sender() == ui->actionDotsColor) {
     color_window->setWindowTitle("Цвет вершин");
-    color_window->setCurrentColor(set->getParam("dot_color").value<QColor>());
+    color_window->setCurrentColor(set->getParam("dots_color").value<QColor>());
     if (color_window->exec() == QColorDialog::Accepted) {
-      set->setParam("dot_color", color_window->selectedColor());
+      set->setParam("dots_color", color_window->selectedColor());
     }
   } else if (sender() == ui->actionLineColor) {
     color_window->setWindowTitle("Цвет ребер");
@@ -91,7 +86,7 @@ void MainWindow::move(QAbstractButton* btn) {
 void MainWindow::change_type_line(QAction* sender) {
     all_disable(ui->type_line->actions());
     sender->setChecked(true);
-    set->setParam("type_line", ui->type_line->actions().indexOf(sender));
+    set->setParam("line_type", ui->type_line->actions().indexOf(sender));
 }
 
 void MainWindow::change_center(QAction* sender) {
@@ -103,7 +98,7 @@ void MainWindow::change_center(QAction* sender) {
 void MainWindow::type_dots(QAction* sender) {
     all_disable(ui->dotsType->actions());
     sender->setChecked(true);
-    set->setParam("type_dots", ui->dotsType->actions().indexOf(sender));
+    set->setParam("dots_type", ui->dotsType->actions().indexOf(sender));
 }
 
 void MainWindow::all_disable(QList<QAction*> menu) {
@@ -117,13 +112,6 @@ void MainWindow::all_invisible() {
     for (int i = ui->tabWidget->count()-1; i >= 0; i--) {
         ui->tabWidget->widget(i)->setVisible(false);
     }
-}
-
-void MainWindow::fst_run() {
-//    ui->rotationLayout->setParent(ui->tabWidgetPage2);
-//    for (int i = ui->tabWidget->count()-1; i >= 0; i--) {
-//    emit ui->tabWidget->tabBarClicked(i);
-//    }
 }
 
 void MainWindow::load_conf() {
@@ -192,7 +180,6 @@ void MainWindow::Make_Gif() {
   frameCounter = 0;
   timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(Record_Gif()));
-//  ui->record_label->setVisible(true);
   timer->start(100);
 }
 
