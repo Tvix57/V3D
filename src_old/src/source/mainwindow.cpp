@@ -221,7 +221,7 @@ void MainWindow::on_actionOpenFile_triggered() {
 }
 
 void MainWindow::on_tabWidget_tabBarClicked(int index) {
-    if (index > 0) {
+    if (index >= 0) {
         if (index <= ui->tabWidget->count()-1) {
             bool flag = ui->tabWidget->widget(index)->isVisible();
             all_invisible();
