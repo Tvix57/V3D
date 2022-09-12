@@ -107,7 +107,7 @@ height: 100%;</string>
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QVBoxLayout" name="scale_layout">
           <property name="spacing">
            <number>1</number>
           </property>
@@ -127,7 +127,7 @@ height: 100%;</string>
            <number>1</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="labelScale">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -143,7 +143,7 @@ height: 100%;</string>
            </widget>
           </item>
           <item>
-           <widget class="QSlider" name="horizontalSlider">
+           <widget class="QSlider" name="sliderScale">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -211,7 +211,7 @@ height: 100%;</string>
          <number>0</number>
         </property>
         <item>
-         <layout class="QFormLayout" name="formLayout">
+         <layout class="QFormLayout" name="rotation_layout">
           <property name="horizontalSpacing">
            <number>1</number>
           </property>
@@ -231,7 +231,7 @@ height: 100%;</string>
            <number>1</number>
           </property>
           <item row="1" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="dial_layout">
             <property name="spacing">
              <number>1</number>
             </property>
@@ -248,7 +248,7 @@ height: 100%;</string>
              <number>1</number>
             </property>
             <item alignment="Qt::AlignBottom">
-             <widget class="QDial" name="dial_x">
+             <widget class="QDial" name="dialX">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -273,7 +273,7 @@ height: 100%;</string>
              </widget>
             </item>
             <item alignment="Qt::AlignBottom">
-             <widget class="QDial" name="dial_y">
+             <widget class="QDial" name="dialY">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -292,7 +292,7 @@ height: 100%;</string>
              </widget>
             </item>
             <item alignment="Qt::AlignBottom">
-             <widget class="QDial" name="dial_z">
+             <widget class="QDial" name="dialZ">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -313,7 +313,7 @@ height: 100%;</string>
            </layout>
           </item>
           <item row="1" column="1">
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="label_layout">
             <property name="spacing">
              <number>1</number>
             </property>
@@ -330,7 +330,7 @@ height: 100%;</string>
              <number>1</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="labelX">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -346,7 +346,7 @@ height: 100%;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="labelY">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -359,7 +359,7 @@ height: 100%;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="labelZ">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -374,7 +374,7 @@ height: 100%;</string>
            </layout>
           </item>
           <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="labelRotation">
             <property name="text">
              <string>Вращение</string>
             </property>
@@ -421,7 +421,7 @@ height: 100%;</string>
          <number>0</number>
         </property>
         <item>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="move_layout">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
@@ -441,7 +441,7 @@ height: 100%;</string>
            <number>1</number>
           </property>
           <item row="3" column="1">
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QVBoxLayout" name="btn_layout_2">
             <property name="spacing">
              <number>5</number>
             </property>
@@ -461,7 +461,7 @@ height: 100%;</string>
              <number>1</number>
             </property>
             <item>
-             <widget class="QPushButton" name="btn_forward">
+             <widget class="QPushButton" name="btnForward">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -508,7 +508,7 @@ height: 100%;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btn_back">
+             <widget class="QPushButton" name="btnBack">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -554,7 +554,7 @@ height: 100%;</string>
            </layout>
           </item>
           <item row="3" column="2">
-           <widget class="QPushButton" name="btn_left">
+           <widget class="QPushButton" name="btnLeft">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -592,7 +592,7 @@ height: 100%;</string>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QPushButton" name="btn_down">
+           <widget class="QPushButton" name="btnDown">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -633,7 +633,7 @@ height: 100%;</string>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QPushButton" name="btn_right">
+           <widget class="QPushButton" name="btnRight">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -671,7 +671,7 @@ height: 100%;</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QPushButton" name="btn_up">
+           <widget class="QPushButton" name="btnUp">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -709,7 +709,7 @@ height: 100%;</string>
            </widget>
           </item>
           <item row="1" column="0" colspan="3">
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="labelMove">
             <property name="text">
              <string>Перемещение</string>
             </property>
