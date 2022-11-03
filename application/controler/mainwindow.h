@@ -20,7 +20,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-namespace s21 {
+namespace Tvix57 {
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -114,6 +114,6 @@ class MainWindow : public QMainWindow {
   QString tmp_info_string_;
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
 #endif  // SRC_INCLUDE_MAINWINDOW_H_

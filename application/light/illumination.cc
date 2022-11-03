@@ -1,6 +1,6 @@
 #include "illumination.h"
 
-namespace s21 {
+namespace Tvix57 {
 Illumination::Illumination()
     : currentItem_{nullptr},
       current_light_{"dirLight", 0},
@@ -43,9 +43,9 @@ QMap<QString, QVariant> &Illumination::GetLightInfo(QString type, int index) {
   QVariant item = illumination_.value(type)->at(index);
   QString type_item = item.metaType().name();
 
-  if (type_item == "s21::PointLight*") {
+  if (type_item == "Tvix57::PointLight*") {
     return item.value<PointLight *>()->GetInfo();
-  } else if (type_item == "s21::SpotLight*") {
+  } else if (type_item == "Tvix57::SpotLight*") {
     return item.value<SpotLight *>()->GetInfo();
   }
   return item.value<Light *>()->GetInfo();
@@ -54,13 +54,13 @@ QMap<QString, QVariant> &Illumination::GetLightInfo(QString type, int index) {
 void Illumination::RemoveLight(QString type, int index) {
   QVariant item = illumination_.value(type)->at(index);
   QString type_item = item.metaType().name();
-  if (type_item == "s21::Light*") {
+  if (type_item == "Tvix57::Light*") {
     illumination_.value(type)->remove(index);
     delete item.value<Light *>();
-  } else if (type_item == "s21::PointLight*") {
+  } else if (type_item == "Tvix57::PointLight*") {
     illumination_.value(type)->remove(index);
     delete item.value<PointLight *>();
-  } else if (type_item == "s21::SpotLight*") {
+  } else if (type_item == "Tvix57::SpotLight*") {
     illumination_.value(type)->remove(index);
     delete item.value<SpotLight *>();
   }
@@ -69,11 +69,11 @@ void Illumination::RemoveLight(QString type, int index) {
 bool Illumination::ItemIsActive(QVariant &item) {
   bool status = true;
   QString type_item = item.typeName();
-  if (type_item == "s21::Light*") {
+  if (type_item == "Tvix57::Light*") {
     status = item.value<Light *>()->isActive();
-  } else if (type_item == "s21::PointLight*") {
+  } else if (type_item == "Tvix57::PointLight*") {
     status = item.value<PointLight *>()->isActive();
-  } else if (type_item == "s21::SpotLight*") {
+  } else if (type_item == "Tvix57::SpotLight*") {
     status = item.value<SpotLight *>()->isActive();
   }
   return status;

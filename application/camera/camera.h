@@ -4,7 +4,7 @@
 #include <QMatrix4x4>
 #include <QVector3D>
 
-namespace s21 {
+namespace Tvix57 {
 
 class Camera {
  private:
@@ -46,5 +46,5 @@ class Camera {
   const float Angle2D(QVector2D v_1, QVector2D v_2) const;
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 #endif

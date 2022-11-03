@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), obj_{nullptr} {
@@ -818,4 +818,4 @@ void MainWindow::RecordsOff() {
   tmp_info_string_.clear();
 }
 
-}  // namespace s21
+}  // namespace Tvix57

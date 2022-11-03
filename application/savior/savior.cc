@@ -1,6 +1,6 @@
 #include "savior.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 Savior::Savior(V3D_GL* gl_parent)
     : m_gl_parent_{gl_parent},
@@ -81,4 +81,4 @@ void Savior::RecordGif() {
   }
 }
 
-}  // namespace s21
+}  // namespace Tvix57

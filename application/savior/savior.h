@@ -8,7 +8,7 @@
 #include "qgifimage.h"
 #include "v3d_gl.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 class Savior : public QObject {
   Q_OBJECT
@@ -39,6 +39,6 @@ class Savior : public QObject {
   void RotateObj(int);
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
 #endif  // SAVIOR_H

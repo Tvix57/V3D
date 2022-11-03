@@ -9,7 +9,7 @@
 
 #include "global_settings.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 enum class VertexType { kNo = 0, kCircle, kSquare };
 
@@ -243,8 +243,8 @@ class ModelSettings : public GlobalSetting {
   }
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
-Q_DECLARE_METATYPE(s21::ModelSettings *);
+Q_DECLARE_METATYPE(Tvix57::ModelSettings *);
 
 #endif  // MODEL_SETTINGS_H_

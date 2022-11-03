@@ -3,7 +3,7 @@
 
 #include "point_light.h"
 
-namespace s21 {
+namespace Tvix57 {
 class SpotLight : public PointLight {
  public:
   SpotLight() : PointLight(), m_inner_cone_{12.5f}, m_outer_cone_{15.0f} {
@@ -16,6 +16,6 @@ class SpotLight : public PointLight {
   float m_inner_cone_;
   float m_outer_cone_;
 };
-}  // namespace s21
-Q_DECLARE_METATYPE(s21::SpotLight);
+}  // namespace Tvix57
+Q_DECLARE_METATYPE(Tvix57::SpotLight);
 #endif  // SPOT_LIGHT_H

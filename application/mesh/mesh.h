@@ -20,7 +20,7 @@
 #include "mesh_information.h"
 #include "model_settings.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 struct Vertex {
   QVector3D Position;
@@ -102,6 +102,6 @@ struct Mesh {
   void DisibleAttribute(QOpenGLShaderProgram &shader);
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
 #endif  // MESH_H

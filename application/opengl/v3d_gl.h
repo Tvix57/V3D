@@ -14,7 +14,7 @@
 #include "model.h"
 #include "scene.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 class V3D_GL : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core {
   Q_OBJECT
@@ -90,6 +90,6 @@ class V3D_GL : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core {
   void setDisableLight(QString, int);
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
 #endif  // V3D_GL_H

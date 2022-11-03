@@ -3,7 +3,7 @@
 
 #include "spot_light.h"
 
-namespace s21 {
+namespace Tvix57 {
 enum class LightType { kFlat = 0, kSoft };
 
 class Illumination : public QObject {
@@ -62,5 +62,5 @@ class Illumination : public QObject {
   void SetOuterCut(double);
   void RemoveLight(QString, int);
 };
-}  // namespace s21
+}  // namespace Tvix57
 #endif  // ILLUMINATION_H

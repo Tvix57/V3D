@@ -1,6 +1,6 @@
 #include "scene.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 Scene::Scene(QOpenGLShaderProgram *shader)
     : VBO(QOpenGLBuffer::VertexBuffer),
@@ -147,4 +147,4 @@ void SceneTransformMatrix::TransformMatrix() {
   matrix.rotate(rotate.Rz, 0.0f, 0.0f, 1.0f);
 }
 
-}  // namespace s21
+}  // namespace Tvix57

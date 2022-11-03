@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-namespace s21 {
+namespace Tvix57 {
 
 Mesh::Mesh(const char *name, QVector<Vertex> &&vertices,
            QVector<unsigned int> &&indices, QVector<Texture *> &&textures,
@@ -220,4 +220,4 @@ void Mesh::DisibleAttribute(QOpenGLShaderProgram &shader) {
   VAO.release();
 }
 
-}  // namespace s21
+}  // namespace Tvix57

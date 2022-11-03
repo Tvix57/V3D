@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="s21::V3D_GL" name="wgt_gl">
+     <widget class="Tvix57::V3D_GL" name="wgt_gl">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
         <horstretch>0</horstretch>
@@ -2025,7 +2025,7 @@ QPushButton:pressed {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>s21::V3D_GL</class>
+   <class>Tvix57::V3D_GL</class>
    <extends>QOpenGLWidget</extends>
    <header location="global">v3d_gl.h</header>
   </customwidget>

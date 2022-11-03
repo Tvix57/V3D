@@ -3,7 +3,7 @@
 
 #include <QSettings>
 
-namespace s21 {
+namespace Tvix57 {
 
 class GlobalSetting {
  public:
@@ -22,6 +22,6 @@ class GlobalSetting {
   }
 };
 
-}  // namespace s21
+}  // namespace Tvix57
 
 #endif  // GLOBAL_SETTINGS_H
