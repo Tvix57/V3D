@@ -5,7 +5,7 @@
 
 #include "mesh.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 struct ModelInfo {
  private:
@@ -68,6 +68,6 @@ struct ModelInfo {
   const unsigned int GetFaceCount() const { return face_count; }
 };
 
-}  // namespace Tvix57
+}  // namespace s21
 
 #endif  // MODELINFO_H_

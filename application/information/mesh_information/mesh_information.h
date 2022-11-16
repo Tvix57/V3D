@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace Tvix57 {
+namespace s21 {
 
 struct MeshInfo {
   QString name;
@@ -12,6 +12,6 @@ struct MeshInfo {
   unsigned int face_count;
 };
 
-}  // namespace Tvix57
+}  // namespace s21
 
 #endif  // MESH_INFORMATION_H_

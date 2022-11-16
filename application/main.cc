@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   format.setSamples(16);
   QSurfaceFormat::setDefaultFormat(format);
 
-  Tvix57::MainWindow vc_main;
+  s21::MainWindow vc_main;
   vc_main.show();
 
   return app.exec();

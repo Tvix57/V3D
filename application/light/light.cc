@@ -1,6 +1,6 @@
 #include "light.h"
 
-namespace Tvix57 {
+namespace s21 {
 Light::Light()
     : m_active_{true},
       m_type_{"dirLight"},

@@ -5,6 +5,8 @@ layout (location = 2) in vec2 aTexCoords;
 layout (location = 3) in vec3 aTangent;
 layout (location = 4) in vec3 aBitangent;
 
+#define PI 3.1415926538
+
 uniform mat4 projection;
 uniform mat4 view;
 uniform mat4 model;
@@ -72,6 +74,7 @@ uniform int CountspotLight;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+float DistributionGGX(vec3 N, vec3 H, float a);
 
 void main() {
   vec3 FragPos = vec3(model * vec4(aPos, 1.0));
@@ -125,7 +128,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * vec3(texture(material.ambient, aTexCoords));
     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, aTexCoords));
-    vec3 specular = material.roughness * light.specular * spec * vec3(texture(material.specular, aTexCoords));
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * vec3(texture(material.specular, aTexCoords));
     return (ambient + diffuse + specular);
 }
 
@@ -144,7 +147,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * vec3(texture(material.ambient, aTexCoords));
     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, aTexCoords));
-    vec3 specular = material.roughness * light.specular * spec * vec3(texture(material.specular, aTexCoords));
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * vec3(texture(material.specular, aTexCoords));
     ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
@@ -170,10 +173,22 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * vec3(texture(material.ambient, aTexCoords));
     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, aTexCoords));
-    vec3 specular = material.roughness * light.specular * spec * vec3(texture(material.specular, aTexCoords));
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * vec3(texture(material.specular, aTexCoords));
     ambient *= attenuation * intensity;
     diffuse *= attenuation * intensity;
     specular *= attenuation * intensity;
     return (ambient + diffuse + specular);
+}
+
+float DistributionGGX(vec3 N, vec3 H, float a) {
+    float a2     = a*a;
+    float NdotH  = max(dot(N, H), 0.0);
+    float NdotH2 = NdotH*NdotH;
+
+    float nom    = a2;
+    float denom  = (NdotH2 * (a2 - 1.0) + 1.0);
+    denom        = PI * denom * denom;
+
+    return nom / denom;
 }
 

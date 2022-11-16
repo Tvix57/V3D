@@ -1,6 +1,6 @@
 #include "illumination.h"
 
-namespace Tvix57 {
+namespace s21 {
 Illumination::Illumination()
     : currentItem_{nullptr},
       current_light_{"dirLight", 0},
@@ -43,9 +43,9 @@ QMap<QString, QVariant> &Illumination::GetLightInfo(QString type, int index) {
   QVariant item = illumination_.value(type)->at(index);
   QString type_item = item.metaType().name();
 
-  if (type_item == "Tvix57::PointLight*") {
+  if (type_item == "s21::PointLight*") {
     return item.value<PointLight *>()->GetInfo();
-  } else if (type_item == "Tvix57::SpotLight*") {
+  } else if (type_item == "s21::SpotLight*") {
     return item.value<SpotLight *>()->GetInfo();
   }
   return item.value<Light *>()->GetInfo();
@@ -54,13 +54,13 @@ QMap<QString, QVariant> &Illumination::GetLightInfo(QString type, int index) {
 void Illumination::RemoveLight(QString type, int index) {
   QVariant item = illumination_.value(type)->at(index);
   QString type_item = item.metaType().name();
-  if (type_item == "Tvix57::Light*") {
+  if (type_item == "s21::Light*") {
     illumination_.value(type)->remove(index);
     delete item.value<Light *>();
-  } else if (type_item == "Tvix57::PointLight*") {
+  } else if (type_item == "s21::PointLight*") {
     illumination_.value(type)->remove(index);
     delete item.value<PointLight *>();
-  } else if (type_item == "Tvix57::SpotLight*") {
+  } else if (type_item == "s21::SpotLight*") {
     illumination_.value(type)->remove(index);
     delete item.value<SpotLight *>();
   }
@@ -69,11 +69,11 @@ void Illumination::RemoveLight(QString type, int index) {
 bool Illumination::ItemIsActive(QVariant &item) {
   bool status = true;
   QString type_item = item.typeName();
-  if (type_item == "Tvix57::Light*") {
+  if (type_item == "s21::Light*") {
     status = item.value<Light *>()->isActive();
-  } else if (type_item == "Tvix57::PointLight*") {
+  } else if (type_item == "s21::PointLight*") {
     status = item.value<PointLight *>()->isActive();
-  } else if (type_item == "Tvix57::SpotLight*") {
+  } else if (type_item == "s21::SpotLight*") {
     status = item.value<SpotLight *>()->isActive();
   }
   return status;

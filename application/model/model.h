@@ -8,7 +8,7 @@
 #include "model_information.h"
 #include "model_settings.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 class Model {
  public:
@@ -58,6 +58,6 @@ class Model {
                                           QString typeName);
 };
 
-}  // namespace Tvix57
+}  // namespace s21
 
 #endif  // MODEL_H

@@ -2,6 +2,8 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;
 
+#define PI 3.1415926538
+
 out vec4 FragColor;
 
 struct Material {
@@ -61,6 +63,7 @@ uniform int CountspotLight;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+float DistributionGGX(vec3 N, vec3 H, float a);
 
 uniform mat4 projection;
 uniform mat4 view;
@@ -110,7 +113,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * material.Ka ;
     vec3 diffuse = light.diffuse * diff * material.Kd;
-    vec3 specular = material.roughness * light.specular * spec * material.Ks;
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * material.Ks;
     return (ambient + diffuse + specular);
 }
 
@@ -129,7 +132,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * material.Ka ;
     vec3 diffuse = light.diffuse * diff * material.Kd;
-    vec3 specular = material.roughness * light.specular * spec * material.Ks;
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * material.Ks;
     ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
@@ -155,10 +158,21 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * material.Ka ;
     vec3 diffuse = light.diffuse * diff * material.Kd;
-    vec3 specular = material.roughness * light.specular * spec * material.Ks;
+    vec3 specular = DistributionGGX(normal, halfwayDir, material.roughness) * light.specular * spec * material.Ks;
     ambient *= attenuation * intensity;
     diffuse *= attenuation * intensity;
     specular *= attenuation * intensity;
     return (ambient + diffuse + specular);
 }
 
+float DistributionGGX(vec3 N, vec3 H, float a) {
+    float a2     = a*a;
+    float NdotH  = max(dot(N, H), 0.0);
+    float NdotH2 = NdotH*NdotH;
+
+    float nom    = a2;
+    float denom  = (NdotH2 * (a2 - 1.0) + 1.0);
+    denom        = PI * denom * denom;
+
+    return nom / denom;
+}

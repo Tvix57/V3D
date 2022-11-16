@@ -3,7 +3,7 @@
 
 #include "light.h"
 
-namespace Tvix57 {
+namespace s21 {
 class PointLight : public Light {
  public:
   PointLight()
@@ -43,6 +43,6 @@ class PointLight : public Light {
   QVector3D m_distance_[12];
 };
 
-}  // namespace Tvix57
-Q_DECLARE_METATYPE(Tvix57::PointLight);
+}  // namespace s21
+Q_DECLARE_METATYPE(s21::PointLight);
 #endif  // POINT_LIGHT_H

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), obj_{nullptr} {
@@ -9,8 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
   ConnectLightRegister();
   SetItemList();
   SetLightList();
-  ui->PointLightbox->setEnabled(false);
-  ui->SpotLightBox->setEnabled(false);
+  SetLightWindow();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -316,7 +315,10 @@ void MainWindow::on_menu_save_file_triggered(QAction *sender) {
           SIGNAL(valueChanged(int)));
   connect(save, SIGNAL(RecordStart()), this, SLOT(RecordsOn()));
   connect(save, SIGNAL(RecordDone()), this, SLOT(RecordsOff()));
-  save->SaveFile(ui->menu_save_file->actions().indexOf(sender));
+  connect(save, SIGNAL(SaveBuffer()), this, SLOT(SaveBuffer()));
+
+  save->SetFormat(ui->menu_save_file->actions().indexOf(sender));
+
 }
 
 void MainWindow::AllDisable(QList<QAction *> menu) {
@@ -516,6 +518,11 @@ void MainWindow::ShowLightSettings(const int index) {
     default:
       break;
   }
+}
+
+void MainWindow::SetLightWindow() {
+    ui->PointLightbox->setEnabled(false);
+    ui->SpotLightBox->setEnabled(false);
 }
 
 void MainWindow::SetLightList() {
@@ -798,7 +805,7 @@ void MainWindow::on_act_scene_grid_draw_triggered() {
 void MainWindow::RecordsOn() {
   tmp_info_string_ = ui->statusbar->currentMessage();
   ui->statusbar->showMessage("ИДЁТ ЗАПИСЬ GIF");
-  ui->tab_main_setting->setDisabled(true);
+//  ui->tab_main_setting->setDisabled(true);
 }
 void MainWindow::on_dsb_surface_refraction_valueChanged(double value) {
   if (obj_) {
@@ -808,14 +815,31 @@ void MainWindow::on_dsb_surface_refraction_valueChanged(double value) {
 
 void MainWindow::on_dsb_surface_roughtness_valueChanged(double value) {
   if (obj_) {
-    obj_->ChangeRoughness(1.0f - value);
+    obj_->ChangeRoughness(value);
   }
 }
 
 void MainWindow::RecordsOff() {
   ui->statusbar->showMessage(tmp_info_string_);
-  ui->tab_main_setting->setDisabled(false);
+//  ui->tab_main_setting->setDisabled(false);
   tmp_info_string_.clear();
 }
 
-}  // namespace Tvix57
+void MainWindow::SaveBuffer() {
+  ui->statusbar->showMessage("ИДЁТ СОХРАНЕНИЕ В БУФФЕР");
+}
+
+
+void MainWindow::on_actionObject_transformation_triggered() {
+  ui->dockWidget_transformation->show();
+}
+
+void MainWindow::on_actionLight_settings_triggered() {
+  ui->dockWidget_light->show();
+}
+
+void MainWindow::on_actionTexture_settings_triggered() {
+  ui->dockWidget_texture->show();
+}
+
+}  // namespace s21

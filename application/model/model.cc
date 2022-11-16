@@ -2,7 +2,7 @@
 
 #include <QOpenGLTexture>
 
-namespace Tvix57 {
+namespace s21 {
 
 Model::Model(QString path)
     : m_settings_{ModelSettings(path)}, info_{new ModelInfo(path)} {
@@ -374,4 +374,4 @@ QVector<Texture *> Model::LoadMaterialTextures(aiMaterial *mat,
   }
   return textures;
 }
-}  // namespace Tvix57
+}  // namespace s21

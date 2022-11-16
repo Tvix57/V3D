@@ -4,41 +4,89 @@
 #include <QFileDialog>
 #include <QObject>
 #include <QTimer>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QMovie>
+#include <QLabel>
+#include <QBuffer>
+#include <QLayout>
+#include <QThread>
+#include <QThreadPool>
+#include <QRunnable>
 
 #include "qgifimage.h"
 #include "v3d_gl.h"
 
-namespace Tvix57 {
+namespace s21 {
 
-class Savior : public QObject {
-  Q_OBJECT
+class Savior : public QWidget {
+ Q_OBJECT
  public:
-  explicit Savior(V3D_GL *);
+  explicit Savior(V3D_GL *, QWidget *parent = nullptr);
   ~Savior();
-  void SaveFile(const int);
+  void SetFormat(const int);
+
+protected:
+  virtual void mousePressEvent(QMouseEvent *event);
 
  private:
-  void SaveImage();
+  void SaveJpeg();
+  void SaveBmp();
   void SaveGif();
-  const bool OpenFileToSave(QString);
+  void MakePreview();
+  void PrepearToSaveGif();
+  void MoveWindow();
+  void MakeBackground();
+  void SetLifeTimer();
 
   V3D_GL *m_gl_parent_;
-  QTimer *m_timer_;
-  QFile *m_ptr_save_file_;
-  int m_frameCounter_;
-  QGifImage *m_gif_;
+  bool m_gif_flag_; /// заменить на указатель на функции
+  QString file_format_;
+  QImage m_frame_;
+  QBuffer buffer_;
+  QTimer *life_timer_;
+
 
  private slots:
-  void CloseSaveFile();
+  void CloseBuffer();
   void RecordGif();
+  void SwitchToPopup();
+  void SendNewFrame();
 
  signals:
   void RecordStart();
   void RecordDone();
-  void SaveDone();
   void RotateObj(int);
+  void SaveBuffer();
+  void NewFrame(QImage);
 };
 
-}  // namespace Tvix57
+
+class GifToThread : public QObject, public QGifImage {
+Q_OBJECT
+public:
+    GifToThread(QBuffer *);
+//    ~GifToThread();
+private:
+    void SetDurationGif();
+    void SetFrequencyFrame();
+
+    QTimer *m_frame_timer_;
+    QTimer *m_gif_timer_;
+    int m_frameCounter_;
+    QBuffer * device_;
+
+private slots:
+  void AddFrame(QImage);
+  void RecordGif();
+  void StartRecord();
+
+signals:
+ void GetNewFrame();
+ void RecordDone();
+ void SaveBuffer();
+};
+
+}  // namespace s21
 
 #endif  // SAVIOR_H

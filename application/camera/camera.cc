@@ -1,6 +1,6 @@
 #include "camera.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 Camera::Camera(QVector3D position, QVector3D up)
     : m_position_{position},
@@ -91,4 +91,4 @@ void Camera::UpdateCameraVectors() {
   m_up_ = QVector3D::normal(m_right_, m_front_);
 }
 
-}  // namespace Tvix57
+}  // namespace s21

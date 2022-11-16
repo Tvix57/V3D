@@ -8,7 +8,7 @@
 #include <QVariant>
 #include <QVector3D>
 
-namespace Tvix57 {
+namespace s21 {
 class Light {
  public:
   Light();
@@ -29,6 +29,6 @@ class Light {
   QVector3D m_specular_;
 };
 
-}  // namespace Tvix57
-Q_DECLARE_METATYPE(Tvix57::Light);
+}  // namespace s21
+Q_DECLARE_METATYPE(s21::Light);
 #endif  // V3D_LIGHT_H_

@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include <QThread>
 
 #include "global_settings.h"
 #include "illumination.h"
@@ -20,7 +21,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-namespace Tvix57 {
+namespace s21 {
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -94,8 +95,15 @@ class MainWindow : public QMainWindow {
 
   void RecordsOn();
   void RecordsOff();
+  void SaveBuffer();
 
- private:
+  void on_actionObject_transformation_triggered();
+  void on_actionLight_settings_triggered();
+  void on_actionTexture_settings_triggered();
+
+
+
+private:
   void keyPressEvent(QKeyEvent *event);
   void ConnectModelRegister();
   void ConnectLightRegister();
@@ -107,6 +115,7 @@ class MainWindow : public QMainWindow {
   void AddModelLable(QString);
   void SetModelInfo();
   void ShowLightSettings(const int);
+  void SetLightWindow();
 
   Ui::MainWindow *ui;
   Model *obj_;
@@ -114,6 +123,6 @@ class MainWindow : public QMainWindow {
   QString tmp_info_string_;
 };
 
-}  // namespace Tvix57
+}  // namespace s21
 
 #endif  // SRC_INCLUDE_MAINWINDOW_H_

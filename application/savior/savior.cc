@@ -1,84 +1,182 @@
 #include "savior.h"
 
-namespace Tvix57 {
+namespace s21 {
 
-Savior::Savior(V3D_GL* gl_parent)
+Savior::Savior(V3D_GL* gl_parent, QWidget *parent)
     : m_gl_parent_{gl_parent},
-      m_timer_{nullptr},
-      m_ptr_save_file_{nullptr},
-      m_frameCounter_{0} {
-  connect(this, SIGNAL(RecordDone()), this, SLOT(CloseSaveFile()));
+      m_gif_flag_{false}
+      {
+
+  setParent(gl_parent->parentWidget()->parentWidget()->parentWidget());
+  setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+  m_frame_ = m_gl_parent_->grabFramebuffer();
+  setFixedSize(m_frame_.scaledToWidth(426).size());
+  MoveWindow();
+  SetLifeTimer();
+  buffer_.open(QIODevice::WriteOnly);
 }
 
-Savior::~Savior() { m_gl_parent_ = nullptr; }
-void Savior::SaveFile(const int index) {
-  QString fileFormat;
+Savior::~Savior() { m_gl_parent_ = nullptr;
+                  }
+
+void Savior::mousePressEvent(QMouseEvent *event) {
+    close();
+    QString window_title("Save File " + file_format_);
+    QString fileName = QFileDialog::getSaveFileName(
+        this, window_title, QDateTime::currentDateTime().toString(), file_format_);
+    QFile * m_ptr_save_file_ = new QFile(fileName);
+    if (!m_ptr_save_file_->open(QIODevice::WriteOnly)) {
+      m_ptr_save_file_ = nullptr;
+    } else {
+      m_ptr_save_file_->write(buffer_.buffer());
+      m_ptr_save_file_->close();
+    }
+};
+
+void Savior::SetFormat(const int index) {
   switch (index) {
     case 1:
-      fileFormat = "Image (*.bmp)";
+      SaveBmp();
       break;
     case 2:
-      fileFormat = "GIF Animation (*.gif)";
+      SaveGif();
       break;
     default:
-      fileFormat = "Image (*.jpeg)";
+      SaveJpeg();
       break;
   }
-  if (OpenFileToSave(fileFormat)) {
-    if (index == 2) {
-      SaveGif();
-    } else {
-      SaveImage();
-    }
-  }
 }
 
-const bool Savior::OpenFileToSave(QString fileFormat) {
-  QString window_title = "Save File";
-  window_title.append(" " + fileFormat);
-  QString fileName = QFileDialog::getSaveFileName(
-      m_gl_parent_, window_title, "/home/Users/home_*", fileFormat);
-  m_ptr_save_file_ = new QFile(fileName);
-  if (m_ptr_save_file_->open(QIODevice::WriteOnly)) {
-    return true;
-  } else {
-    return false;
-  }
+void Savior::SaveJpeg() {
+    file_format_ = "Image (*.jpeg)";
+    m_frame_.save(&buffer_, "JPEG");
+    CloseBuffer();
 }
 
-void Savior::SaveImage() {
-  m_gl_parent_->grabFramebuffer().save(m_ptr_save_file_);
-  emit RecordDone();
+void Savior::SaveBmp() {
+    file_format_ = "Image (*.bmp)";
+    m_frame_.save(&buffer_, "BMP");
+    CloseBuffer();
 }
 
 void Savior::SaveGif() {
-  m_gif_ = new QGifImage();
-  m_frameCounter_ = 0;
-  m_timer_ = new QTimer(this);
-  connect(m_timer_, SIGNAL(timeout()), this, SLOT(RecordGif()));
-  m_timer_->start(40);
-  emit RecordStart();
+  file_format_ = "GIF Animation (*.gif)";
+  m_gif_flag_ = true;
+  GifToThread * gif_thread = new GifToThread(&buffer_);
+
+  connect(gif_thread, SIGNAL(GetNewFrame()), this, SLOT(SendNewFrame()));
+  connect(this, SIGNAL(NewFrame(QImage)), gif_thread, SLOT(AddFrame(QImage)));
+  connect(gif_thread, SIGNAL(RecordDone()), this, SLOT(RecordGif()));
+  connect(gif_thread, SIGNAL(SaveBuffer()), this, SIGNAL(SaveBuffer()));
+  QThread * thread1 = new QThread;
+
+  connect(gif_thread, SIGNAL(RecordDone()), thread1, SIGNAL(finished()));
+
+  connect(thread1, SIGNAL(finished()), thread1, SLOT(quit()));
+  connect(thread1, SIGNAL(finished()), gif_thread, SLOT(deleteLater()));
+  connect(thread1, SIGNAL(finished()), thread1, SLOT(deleteLater()));
+  connect(thread1, SIGNAL(started()), gif_thread, SLOT(StartRecord()));
+  connect(thread1, SIGNAL(started()), this, SIGNAL(RecordStart()));
+  gif_thread->moveToThread(thread1);
+  thread1->start(QThread::NormalPriority);
 }
 
-void Savior::CloseSaveFile() {
-  m_ptr_save_file_->close();
-  delete m_ptr_save_file_;
-  m_ptr_save_file_ = nullptr;
-  emit SaveDone();
+void Savior::PrepearToSaveGif() {
+    QMessageBox animation_ask;
+    animation_ask.addButton(QMessageBox::Yes);
+    animation_ask.addButton(QMessageBox::No);
+    animation_ask.setWindowTitle("Анимация");
+    animation_ask.setDetailedText("Во время стандартной анимации объект будет вращаться вокруг оси Х.");
+    animation_ask.setInformativeText("Использовать при записи стандартную анимацию?");
 }
 
-void Savior::RecordGif() {
-  emit RotateObj((m_frameCounter_ * 6) % 360);
-  ++m_frameCounter_;
-  m_gif_->addFrame(m_gl_parent_->grabFramebuffer(), 100);
-  if (m_frameCounter_ == 122) {
-    m_timer_->stop();
-    m_gif_->save(m_ptr_save_file_);
-    delete m_gif_;
-    m_gif_ = nullptr;
-    emit RecordDone();
-    emit RotateObj(0);
+void Savior::MoveWindow() {
+    QRect rect = this->screen()->geometry();
+    int x = (rect.width() - width()-50);
+    int y = (rect.height() - height()-50);
+    move(x, y);
+}
+
+void Savior::MakeBackground() {
+  QLabel * lab = new QLabel(this);
+  if (m_gif_flag_) {
+    QMovie * m_anim_frame_ = new QMovie(&buffer_);
+    m_anim_frame_->setScaledSize(this->size());
+    lab->setMovie(m_anim_frame_);
+    m_anim_frame_->start();
+  } else {
+    lab->setFixedSize(m_frame_.scaledToWidth(426).size());
+    QPixmap pm;
+    pm = pm.fromImage(m_frame_);
+    lab->setPixmap(pm);
+    lab->setScaledContents(true);
   }
 }
 
-}  // namespace Tvix57
+void Savior::SetLifeTimer() {
+    life_timer_ = new QTimer(this);
+    life_timer_->setSingleShot(true);
+    life_timer_->setInterval(3000);
+    connect(life_timer_, SIGNAL(timeout()), this, SLOT(SwitchToPopup()));
+}
+
+void Savior::CloseBuffer() {
+   buffer_.close();
+   buffer_.open(QIODevice::ReadOnly);
+   MakeBackground();
+   show();
+   life_timer_->start();
+   emit RecordDone();
+}
+
+void Savior::RecordGif() {
+    CloseBuffer();
+}
+
+void Savior::SwitchToPopup() {
+      setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Popup);
+      show();
+}
+
+void Savior::SendNewFrame() {
+  emit NewFrame(m_gl_parent_->grabFramebuffer());
+}
+
+GifToThread::GifToThread(QBuffer * out_device) {
+    device_ = out_device;
+}
+
+void GifToThread::SetDurationGif() {
+    m_gif_timer_ = new QTimer(this);
+    m_gif_timer_->setSingleShot(true);
+    m_gif_timer_->setInterval(5000);
+    connect(this, SIGNAL(destroyed()), m_gif_timer_, SLOT(deleteLater()));
+    connect(m_gif_timer_, SIGNAL(timeout()), this, SLOT(RecordGif()));
+}
+
+void GifToThread::SetFrequencyFrame() {
+    m_frame_timer_ = new QTimer(this);
+    connect(this, SIGNAL(destroyed()), m_frame_timer_, SLOT(deleteLater()));
+    connect(m_frame_timer_, SIGNAL(timeout()), this, SIGNAL(GetNewFrame()));
+    connect(m_gif_timer_, SIGNAL(timeout()), m_frame_timer_, SLOT(stop()));
+    m_frame_timer_->setInterval(30);
+}
+
+void GifToThread::StartRecord() {
+    SetDurationGif();
+    SetFrequencyFrame();
+    m_frame_timer_->start();
+    m_gif_timer_->start();
+}
+
+void GifToThread::AddFrame(QImage frame) {
+    addFrame(frame, 30);
+}
+
+void GifToThread::RecordGif() {
+    emit SaveBuffer();
+    save(device_);
+    emit RecordDone();
+}
+
+}  // namespace s21

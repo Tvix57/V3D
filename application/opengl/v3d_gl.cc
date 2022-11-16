@@ -1,6 +1,6 @@
 #include "v3d_gl.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 V3D_GL::V3D_GL(QWidget *parent)
     : QOpenGLWidget{parent}, m_camera_(QVector3D(1.0, 1.0, 3.0)) {}
@@ -290,4 +290,4 @@ void V3D_GL::set_fps(QTimer *timer, GLfloat fps) {
   timer->start(1000 / fps);
 }
 
-}  // namespace Tvix57
+}  // namespace s21

@@ -9,7 +9,7 @@
 
 #include "model_settings.h"
 
-namespace Tvix57 {
+namespace s21 {
 
 enum class ProjectionType { kOrtho = 0, kPerspective };
 enum class DrawSceneType { kNo = 0, kDraw };
@@ -88,6 +88,6 @@ class Scene {
   void UpdateProjection();
 };
 
-}  // namespace Tvix57
+}  // namespace s21
 
 #endif  // SCENE_H_
