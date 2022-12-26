@@ -2,7 +2,7 @@
 
 Programm to visualize the 3D model.
 
-The program was developed in C++ language of C++17 standard follow the Google style
+The program was developed in C++ language of C++17 standard follow the Google style for MacOS.
 The program built with Makefile which contains standard set of targets for GNU-programs: 
 all, install, uninstall, clean, dvi, dist, tests.
 The program is developed according to the principles of object-oriented programming;
