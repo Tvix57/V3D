@@ -1,4 +1,4 @@
-<h1 align="center"> 3DViewer </h1>
+<h1 align="center"> V3D </h1>
 
 <h2 align="center"> Вид главного окна </h2>
 
